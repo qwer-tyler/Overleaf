@@ -1,0 +1,269 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\newcommand{\note}[1]{\textcolor{red!60!black}{\textit{[#1]}}}
+\newcommand{\P}{\mathcal{P}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+
+\title{MFE Lecture 1 Notes}
+\author{Transcribed from handwritten notes}
+\date{September 14, 2026}
+
+\begin{document}
+\maketitle
+
+\section*{Syllabus Notes}
+\begin{itemize}
+  \item Examples:
+  \begin{enumerate}[label=\arabic*)]
+    \item Find an example from class, e.g., a compact set.
+    \item Find a ``counter-example,'' e.g., a non-compact set.
+  \end{enumerate}
+  \item No final. One exam for three parts of the class.
+\end{itemize}
+
+\section{Methods of Proof}
+
+\textbf{Mathematical statements} are either true or false \note{without qualifiers}.
+\begin{itemize}
+  \item Yes: ``My car is black.'' \quad No: ``This song is good.''
+  \item Can turn ``everyday speech'' into mathematical statements with quantifiers.
+\end{itemize}
+
+\paragraph{Notation.} $P$: True; $\neg P$: False.
+
+\subsection{Proofs}
+
+\subsubsection*{1. Direct proof}
+\begin{enumerate}[label=\arabic*)]
+  \item Assume $P$ is true.
+  \item Show $Q$ is true.
+\end{enumerate}
+
+\textbf{Example:} show $a+b$ is odd.
+
+$P$: consecutive, $b = a+1$; \quad $Q$: $n = 2k+1$.
+
+\subsubsection*{2. Contradiction}
+\begin{enumerate}[label=\arabic*)]
+  \item Assume $Q$ is false.
+\end{enumerate}
+So there exists no $k$ such that $a+b = 2k+1$, but $a$ and $b$ are consecutive integers, and that can be written as $a+b = 2k+1$. \hfill $\square$
+
+$P$: $a, b$ are consecutive $\Rightarrow b = a+1$
+
+$\neg Q$: $\nexists\, k \mid a+b = 2k+1$
+
+\subsubsection*{3. Proof by induction}
+\begin{enumerate}[label=\arabic*)]
+  \item Consider a sequence of statements.
+\end{enumerate}
+
+\textbf{Base case:} $a+b$ is odd. $1+2 = 3 \to 3 = 2(1)+1$, so odd.
+
+\textbf{I.S.:} if $n$ and $n+1$ are integers, $n + (n+1) = 2n+1$.
+
+\medskip
+\textbf{Base case:} $i = 1$, $P_1$. Consider $1$ and $2$: $1+2 = 3$, odd.
+
+\textbf{I.S.\ (generic statement):} Consider any $i$: $i + (i+1) = 2i+1$.
+
+\textbf{I.H.\ (now show $i+1$ is true):}
+\[
+  (i+1) + \bigl[(i+1)+1\bigr] = 2i+3 \equiv (2i+1) + 2
+\]
+Adding two does not change evenness or oddness.
+
+\subsubsection*{Contrapositive}
+\[
+  P \to Q \;\equiv\; \neg Q \to \neg P
+\]
+
+\section{Deduction and Direct Proof}
+\note{Maybe don't do proper mathematics, do examples. Words paraphrased from professor.}
+
+\paragraph{Sufficiency.} $a \Rightarrow b$ \quad \note{just tautological, so perhaps define the mathematical object before giving the definition}
+\begin{itemize}
+  \item Example: If something is in the ocean, then it is wet.
+  \begin{itemize}
+    \item Make sure to define objects more.
+    \item This example is just using the sufficiency structure without actually being well-defined and true.
+    \item Use the simplest possible example to show your point.
+  \end{itemize}
+\end{itemize}
+
+\paragraph{Example: Cartesian Product.}
+\begin{itemize}
+  \item Def: $S \times T = \{(x,y) \mid x \in S,\ y \in T\}$
+  \item Ex 1: \note{``did it right''}
+  \begin{itemize}
+    \item Don't add unnecessary information.
+    \item ``I want you to think about every single word you write.''
+  \end{itemize}
+  \item Counterexample: [remove element; swap order of pairs]
+\end{itemize}
+
+\section{Sets (Part 2; Lecture 1, p.~6)}
+
+\begin{itemize}
+  \item \textbf{Sets:} Any well-specified collection of objects.
+  \begin{itemize}
+    \item Unordered and no duplicates.
+    \item Ex: In economics, we use sets to define a budget. $B = \{q \in \R \mid \ldots\}$ \note{pg 7}
+  \end{itemize}
+  \item \textbf{Subsets:} $T \subseteq S \Rightarrow$ all elements in $T$ are in $S$.
+  \item \textbf{Superset:} $S \supseteq T \Rightarrow$ at least all elements in $S$ are in $T$.
+\end{itemize}
+
+\subsection*{DeMorgan's Law Proof}
+\[
+  (S \cup T)^c = S^c \cap T^c
+\]
+\note{Venn diagram: universe $U$ containing overlapping circles $S$ and $T$, with complement region $c$ labeled.}
+
+\note{this way} $(\Rightarrow)$ Assume $x \in (S \cup T)^c$. This means that $x \notin (S \cup T)$, which means that $x \notin S$ and $x \notin T$. That is, $x \in S^c$ and $x \in T^c$. Hence, $x \in (S^c \cap T^c)$. \note{on slides}
+
+$(\Leftarrow)$ \note{left blank in notes}
+
+\paragraph{Cartesian Product:} \ldots \quad \note{D.2.2}
+\paragraph{Ordered Pair:} \ldots \quad \note{D.2.3}
+\note{(also marked d.2.6)}
+
+\paragraph{Power Sets.} The set of all subsets of $S$ is called a power set, $\P(S)$, denoted $2^S$.
+\begin{itemize}
+  \item Ex: $S = \{1,2,3\}$, so $|S| = 3$ and $2^S$ has $2^3 = 8$ elements $S_1, \ldots, S_8$.
+  \item $2^S = \P(S) = \{S_1, \ldots, S_n\}$, a set of subsets.
+\end{itemize}
+\textit{Application:} coalition formation.
+
+\section{Functions}
+
+\begin{itemize}
+  \item All elements of the domain must be mapped.
+  \item No single element of the domain can correspond to more than one element in the range.
+\end{itemize}
+
+\note{Sketch, axes $i$ (interest rate) versus $M$ (money): a vertical line labeled ``inelastic'' and a horizontal line labeled ``perfectly elastic.''}
+\begin{itemize}
+  \item Vertical line: not a function (money is not a function of interest rate).
+  \item Horizontal line: function.
+\end{itemize}
+
+\note{Sketch, axes $S$ versus $D$ (supply and demand).}
+\begin{itemize}
+  \item Introduce $D$ and $S$ as a correspondence before we can prove a unique solution $\forall x$; then call it a function.
+\end{itemize}
+
+\note{Sketch: a set mapping into $Y$, which contains subsets $B_1, B_2, B_3$.}
+
+\paragraph{Prop 3.1 a).} $f : \R \to \R$, $f(x) = x$, with $B_1 = [0,1)$ and $B_2 = [1,2]$.
+\note{Sketch: the line $y = x$, with $B_1, B_2$ on the vertical axis and preimages $f^{-1}(B_1), f^{-1}(B_2)$ on the horizontal axis.}
+
+\medskip
+The difference between surjective, injective and bijective is the extent to which we use $Y$.
+
+\begin{itemize}
+  \item[?] Comparing size of sets.
+  \item[?] Can two sets be bijective? They must have the same cardinality.
+\end{itemize}
+
+\section{Bijective, Injective, Surjective}
+
+\begin{itemize}
+  \item \textbf{Bijective:} \note{She would go about defining bijectivity by defining injectivity and surjectivity. Then write another line that says bijective is just the last two definitions.}
+  \item Surjectivity definition ``buys'' us all of the $y$'s in $Y$. The definition of a function only maps all $x \in X$ to something.
+  \item Injectivity definition ``buys'' us that each $x$ gets a unique $y$.
+  \begin{itemize}
+    \item Each $y \in Y$ has exactly one $x \in X$ that can map to it.
+  \end{itemize}
+  \item If $f : X \to Y$ is bijective, then
+  \[
+    f\bigl(f^{-1}(y)\bigr) = y \quad\text{and}\quad f^{-1}\bigl(f(x)\bigr) = x.
+  \]
+\end{itemize}
+
+\subsection*{Lecture}
+\note{Diagrams:}
+\begin{itemize}
+  \item \textbf{Bijective:} $\{1,2,3\} \to \{1,2,3\}$. We can move backwards (``back and forth''), a correspondence.
+  \item \textbf{Injective, surjective:} diagram of $\{1,2,3,4\}$ mapping into $\{1,2,3,4\}$ with the two properties marked in different colors.
+\end{itemize}
+
+\paragraph{A correspondence:} ``For one income level, there are many optimal points of consumption.''
+\begin{itemize}
+  \item One $x$, many $y$.
+  \item ``Each one still must \ldots'' \note{cut off at page break}
+  \item Example: budget set (shaded region: all possible values), with a mapping diagram from $x \in \{10, 15, 20, 25\}$ to $y \in \{2, 1.5, 1, 0\}$.
+\end{itemize}
+
+\section{Cardinality and Countability}
+
+Let $A = \{1,2,3,4\}$ and $B = \{a,b,c,d\}$. Then $|A| = |B|$ (same cardinal number).
+
+\begin{itemize}
+  \item Easy to see with countable, small sets.
+  \begin{itemize}
+    \item Hard to do with infinite sets.
+    \item $|\Z|$ versus $|\text{odd integers}|$? Sizes of infinity.
+  \end{itemize}
+  \item \textbf{Def:} If there exists a bijection between $X$ and $Y$, then $|X| = |Y|$.
+  \begin{itemize}
+    \item We care not about the number of elements but comparison of size.
+  \end{itemize}
+  \item \textbf{Prop:} If $A$ and $B$ are countable, then $A \times B$ is countable.
+
+  By definition, $A \sim \N$ and $B \sim \N$.
+  \begin{itemize}
+    \item Side note: a set $S$ is countable if there is a bijection $S \leftrightarrow \N$.
+  \end{itemize}
+\end{itemize}
+
+\paragraph{Sketch.}
+\begin{itemize}
+  \item Bijective implies injective automatically.
+  \item If $S \hookrightarrow \N$, then $S \sim \operatorname{im}(S) \subseteq \N$.
+\end{itemize}
+Since $A$ and $B$ are countable, there exist injections $A \hookrightarrow \N$ and $B \hookrightarrow \N$, and define
+\[
+  h(a,b) = 2^{f(a)}\, 3^{f(b)}.
+\]
+\note{Marked ``1533'' in the margin.}
+
+\subsection*{Fundamental Theorem of Arithmetic}
+\begin{itemize}
+  \item Every $n \in \Z$ with $n > 1$ can be expressed as a product of primes.
+  \item This factorization is unique up to the order of the primes.
+  \begin{itemize}
+    \item E.g., $60 = 5 \cdot 3 \cdot 2 \cdot 2$.
+  \end{itemize}
+\end{itemize}
+
+\section{Uncountability}
+
+\textbf{Claim:} An infinite Cartesian product of two countable sets is uncountable.
+
+\begin{enumerate}
+  \item Assume set $E$ is countable.
+  \item (1) implies that the set can be written as an enumeration, $E = \{x_1, \ldots, x_n\}$, i.e., we can write them out.
+  \item \note{fill from slides}
+\end{enumerate}
+
+\[
+\begin{aligned}
+  x_1 &= (x_{11}, x_{12}, x_{13}, \ldots)\\
+  x_2 &= (x_{21}, x_{22}, x_{23}, \ldots)\\
+  x_3 &= (x_{31}, x_{32}, x_{33}, \ldots)
+\end{aligned}
+\]
+where the columns are labeled $\in A_1$, $\in A_2$, $\in A_3$. Define
+\[
+  y = (y_1, y_2, y_3, \ldots, y_n), \qquad y_1 \neq x_{11}\ (y_1 \in A_1),\quad y_2 \neq x_{22}\ (y_2 \in A_2).
+\]
+This makes it so $y$ can't be any $x_i$: make $y$ different from $x_{11}$, then different from $x_{22}$ (with respect to first, second, infinity digits).
+
+\end{document}
