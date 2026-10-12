@@ -1,0 +1,1008 @@
+\documentclass[11pt]{article}
+\IfFileExists{preamble.tex}{\input{preamble}}{\input{exam1-study-plan/preamble}}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries\color{navy} Exam 1: 7-Day Study Plan}\\[6pt]
+{\large ECON-GA 1001: Applied Statistics and Econometrics I}\\[4pt]
+{\color{slate} Study days: Mon Oct 12 to Sun Oct 18, 2026 \quad$\cdot$\quad Mock exam: Mon Oct 19 \quad$\cdot$\quad Exam: Wed Oct 21, 6:20 to 8:20 pm}
+\end{center}
+
+\vspace{6pt}
+\section{How to use this plan}
+\markboth{How to use this plan}{}
+
+Seven sessions of 3.5 to 4 hours cover all seven themes in the study guide, in the order the lectures build them. The mock exam (2 hours) is separate and is not counted in those hours.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\small\begin{tabular}{@{}l l l l@{}}
+\toprule
+\textbf{Day} & \textbf{Date} & \textbf{Topic} & \textbf{Homework to redo} \\
+\midrule
+1 & Mon Oct 12 & Random variables, distributions, moments & HW1 P1, P2(a,b) \\
+2 & Tue Oct 13 & Joint and conditional distributions, CEF, LIE & HW1 P2(c,d), P3 \\
+3 & Wed Oct 14 & Estimators: bias, variance, MSE, LLN, CLT & HW1 P4, P5 \\
+4 & Thu Oct 15 & Inference and the population regression line & HW1 P7 \\
+5 & Fri Oct 16 & Simple OLS, algebraic properties, rescaling & HW2 P1, P2 \\
+6 & Sat Oct 17 & Matrix algebra, least squares geometry, CLRM & HW2 P3, P4, P6(a to d) \\
+7 & Sun Oct 18 & Matrix OLS, $\bP$ and $\bM$, FWL, $R^2$ & HW2 P5, P6(e) \\
+\midrule
+Mock & Mon Oct 19 & Timed 2-hour mock exam, then self-grade & \texttt{mock\_exam.tex} \\
+Review & Tue Oct 20 & Light review of your error log only (1 hour max) & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Coding problems (HW1 P6 and HW2 P7) are left out, since the exam has no R questions. HW2 P7(f) is conceptual, so it reappears as a practice problem on Day 6.
+
+\subsection{Every session follows the same four blocks}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item \textbf{Concept review (60 min).} Reread the lecture slides listed for the day. Then close them and rewrite the Key Results box from memory on blank paper.
+  \item \textbf{Homework redo (40 to 50 min).} Redo the listed homework problems \emph{without} looking at your old solutions. Compare only after you finish.
+  \item \textbf{New practice problems (90 to 100 min).} Work the day's problems closed-notes, with your non-programmable calculator and the course statistical tables.
+  \item \textbf{Grade and log (25 to 30 min).} Check the Solutions section at the end. Write every miss in an \emph{error log}: the problem, what went wrong, and the correct idea in one line.
+\end{enumerate}
+
+\noindent The problem labels match the exam format: \textbf{[MC]} multiple choice, \textbf{[BA]} brief answer, \textbf{[LF]} long form. Long-form problems expect full work, as on the exam.
+
+%=====================================================================
+\clearpage
+\section{Day 1 (Mon Oct 12): Random variables and distributions}
+\markboth{Day 1: Random variables}{}
+
+\begin{planbox}[Session plan: 3.75 hours]
+\textbf{Read:} \emph{Probability and Distribution Theory}, slides 4 to 30.\\
+\textbf{Redo:} HW1 Problem 1 (continuous density), HW1 Problem 2(a,b) (sample space to random variable).\\
+\textbf{Goal:} By the end you can validate a pdf or pmf, build a CDF, compute $\E[X]$ and $\Var(X)$, standardize a normal, and transform a random variable.
+\end{planbox}
+
+\begin{keybox}
+\begin{itemize}
+  \item A random variable is a function $X:S\to\mathbb{R}$. Capital $X$ is the function; lowercase $x$ is one value it can take.
+  \item \textbf{Discrete:} $f(x)=P(X=x)\ge 0$ and $\sum_x f(x)=1$. \quad \textbf{Continuous:} $f(x)\ge 0$, $\int_{-\infty}^{\infty} f(x)\,dx=1$, and
+  \[ P(a\le X\le b)=\int_a^b f(x)\,dx, \qquad P(X=x)=0 \text{ for every single point } x. \]
+  \item \textbf{CDF:} $F(x)=P(X\le x)$, nondecreasing, $F(-\infty)=0$, $F(\infty)=1$, and $f(x)=F'(x)$. Also $P(a<X\le b)=F(b)-F(a)$.
+  \item \textbf{Moments:}
+  \[ \E[X]=\int x f(x)\,dx, \qquad \E[g(X)]=\int g(x)f(x)\,dx, \]\[ \Var(X)=\E\big[(X-\mu)^2\big]=\E[X^2]-(\E[X])^2. \]
+  \item \textbf{Linear rules:} $\E[a+bX]=a+b\,\E[X]$ and $\Var(a+bX)=b^2\Var(X)$.
+  \item \textbf{Standardize:} if $X\sim N(\mu,\sigma^2)$ then $Z=\dfrac{X-\mu}{\sigma}\sim N(0,1)$ and $P(X\le x)=\Phi\!\left(\dfrac{x-\mu}{\sigma}\right)$, with $\Phi(-z)=1-\Phi(z)$.
+  \item \textbf{Nonlinear transform $Y=g(X)$:} rebuild the distribution through the CDF, $F_Y(y)=P(g(X)\le y)$, then differentiate. Never apply $g$ to the density.
+  \item Median solves $F(x)=0.5$; mode maximizes $f(x)$; skewness $\mu_3/\mu_2^{3/2}$; kurtosis $\mu_4/\mu_2^2$ (normal: 0 and 3).
+\end{itemize}
+\end{keybox}
+
+\subsection{Practice problems}
+\setcounter{prob}{0}
+
+\prob{MC}{Continuous random variables}
+Let $X$ be continuous with density $f(x)$. Which statement is \textbf{always} true?
+\begin{enumerate}[label=(\alph*)]
+  \item $f(x)\le 1$ for every $x$.
+  \item $P(X=2)=f(2)$.
+  \item $P(1<X<3)=P(1\le X\le 3)$.
+  \item $F(x)$ can decrease over some interval.
+\end{enumerate}
+
+\prob{MC}{Linear transformation}
+A city's daily high temperature has mean $20^\circ$C and standard deviation $5^\circ$C. In Fahrenheit, $Y=32+1.8X$. The standard deviation of $Y$ is
+\begin{enumerate}[label=(\alph*)]
+  \item $9$ \quad (b) $41$ \quad (c) $81$ \quad (d) $14.6$
+\end{enumerate}
+
+\prob{BA}{Validity check}
+Is $f(x)=x-\tfrac12$ for $0\le x\le 2$ (and $0$ otherwise) a valid probability density function? Explain using both conditions.
+
+\prob{LF}{A continuous density (modeled on HW1 P1)}
+Let $f(x)=c\,x^2$ for $0\le x\le 3$ and $f(x)=0$ otherwise.
+\begin{enumerate}[label=(\alph*)]
+  \item Find $c$ so that $f$ is a valid pdf.
+  \item Derive the CDF $F(x)$ for all real $x$.
+  \item Find $P(1<X<2)$ two ways: by integrating $f$ and by using $F$.
+  \item Find $\E[X]$, $\E[X^2]$, and $\Var(X)$.
+  \item Find the median. What is $P(X=2)$, and why?
+\end{enumerate}
+
+\prob{LF}{A discrete pmf}
+Let $P(X=x)=c\,x$ for $x\in\{1,2,3,4\}$.
+\begin{enumerate}[label=(\alph*)]
+  \item Find $c$.
+  \item Write out the CDF as a step function.
+  \item Find $\E[X]$ and $\Var(X)$.
+  \item Let $W=10-2X$. Find $\E[W]$ and $\Var(W)$ using the linear rules, without rebuilding the pmf of $W$.
+\end{enumerate}
+
+\prob{LF}{Using the normal table}
+\begin{enumerate}[label=(\alph*)]
+  \item IQ scores are $X\sim N(100,15^2)$. Find $P(X>130)$ and $P(85<X<115)$.
+  \item Weekly hours worked are $Y\sim N(40,8^2)$. Find $P(30<Y<52)$.
+  \item For $Y$ in part (b), find the value $y^*$ such that only 5\% of workers exceed it.
+\end{enumerate}
+
+\prob{LF}{A nonlinear transformation}
+Let $X\sim U[0,1]$ and $Y=\sqrt{X}$.
+\begin{enumerate}[label=(\alph*)]
+  \item What is the support of $Y$?
+  \item Derive $F_Y(y)$ and then $f_Y(y)$.
+  \item Find $\E[Y]$ two ways: using $f_Y$, and using $\E[g(X)]=\int g(x)f_X(x)\,dx$.
+  \item Explain why $f_Y(y)\neq \sqrt{f_X(y)}$.
+\end{enumerate}
+
+\prob{LF}{Derivations from definitions}
+Using only the definition of $\E[\cdot]$ as a sum or integral:
+\begin{enumerate}[label=(\alph*)]
+  \item Show $\E[a+bX]=a+b\,\E[X]$.
+  \item Show $\Var(X)=\E[X^2]-(\E[X])^2$.
+  \item Show $\Var(a+bX)=b^2\Var(X)$.
+  \item Show that $Z=(X-\mu)/\sigma$ has mean $0$ and variance $1$.
+\end{enumerate}
+
+%=====================================================================
+\clearpage
+\section{Day 2 (Tue Oct 13): Two random variables and the CEF}
+\markboth{Day 2: Joint and conditional}{}
+
+\begin{planbox}[Session plan: 3.75 hours]
+\textbf{Read:} \emph{Probability and Distribution Theory}, slides 31 to 50.\\
+\textbf{Redo:} HW1 Problem 2(c,d) (independence), HW1 Problem 3 (marginal, conditional, LIE).\\
+\textbf{Goal:} Move fluently between joint, marginal, and conditional distributions; compute $\Cov$ and $\Corr$; verify the LIE; derive the properties of the CEF error.
+\end{planbox}
+
+\begin{keybox}
+\begin{itemize}
+  \item \textbf{Marginal:} $f_X(x)=\sum_y f(x,y)$ or $\int f(x,y)\,dy$. \quad \textbf{Conditional:} $f_{Y\mid X}(y\mid x)=\dfrac{f(x,y)}{f_X(x)}$.
+  \item \textbf{Covariance and correlation:}
+  \[ \Cov(X,Y)=\E[(X-\mu_X)(Y-\mu_Y)]=\E[XY]-\E[X]\E[Y], \quad \rho_{XY}=\frac{\Cov(X,Y)}{\sigma_X\sigma_Y}\in[-1,1]. \]
+  \item \textbf{Independence:} $f(x,y)=f_X(x)f_Y(y)$ for \emph{all} $(x,y)$, equivalently $f(y\mid x)=f_Y(y)$. Independence $\Rightarrow \Cov=0$, but $\Cov=0 \not\Rightarrow$ independence.
+  \item \textbf{Sums:} $\Var(aX+bY)=a^2\Var(X)+b^2\Var(Y)+2ab\Cov(X,Y)$. Independent normals add to a normal.
+  \item \textbf{CEF:} $\E[Y\mid X=x]=\sum_y y\,f(y\mid x)$, a function of $x$. \quad \textbf{LIE:} $\E\big[\E[Y\mid X]\big]=\E[Y]$.
+  \item \textbf{CEF error} $\varepsilon=Y-\E[Y\mid X]$ satisfies
+  \[ \E[\varepsilon\mid X]=0 \;\Rightarrow\; \E[\varepsilon]=0 \text{ and } \E[X\varepsilon]=0. \]
+  \item \textbf{Variance decomposition:} $\Var(Y)=\E\big[\Var(Y\mid X)\big]+\Var\big(\E[Y\mid X]\big)$ (within plus between).
+\end{itemize}
+\end{keybox}
+
+\subsection{Practice problems}
+\setcounter{prob}{0}
+
+\prob{MC}{Independence (study guide style)}
+$X$ and $Y$ are independent if all of the following hold, \textbf{except}:
+\begin{enumerate}[label=(\alph*)]
+  \item $\E[Y]=\E\big[\E(Y\mid X)\big]$.
+  \item $f(x,y)=f_X(x)f_Y(y)$ for all $(x,y)$.
+  \item $P(Y=y\mid X=x)=P(Y=y)$ for all $x,y$.
+  \item The conditional distribution of $X$ given $Y$ does not depend on $Y$.
+\end{enumerate}
+
+\prob{BA}{Zero correlation without independence}
+Let $X$ take values $-1,0,1$ with probability $\tfrac13$ each, and let $Y=X^2$. Show that $\Cov(X,Y)=0$, then show that $X$ and $Y$ are not independent.
+
+\prob{LF}{Joint table (modeled on HW1 P3)}
+\begin{center}
+\begin{tabular}{c|ccc}
+$X \backslash Y$ & 10 & 20 & 30 \\ \hline
+0 & 0.10 & 0.05 & 0.05 \\
+1 & 0.10 & 0.20 & 0.10 \\
+2 & 0.05 & 0.10 & 0.25
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*)]
+  \item Find the marginal distributions of $X$ and $Y$, and $\E[X]$, $\E[Y]$.
+  \item Find the conditional distribution of $Y$ given $X=2$, and $\E[Y\mid X=2]$.
+  \item Find $\E[Y\mid X=x]$ for $x=0,1,2$ and verify the Law of Iterated Expectations.
+  \item Find $\Cov(X,Y)$ and $\Corr(X,Y)$.
+  \item Are $X$ and $Y$ independent? Prove it with one cell.
+\end{enumerate}
+
+\prob{LF}{Die and coin (modeled on HW1 P2)}
+Roll a fair four-sided die ($X_1\in\{1,2,3,4\}$) and flip a fair coin independently, with $C=1$ for heads and $0$ for tails. Let $X_2=X_1+2C$.
+\begin{enumerate}[label=(\alph*)]
+  \item List the sample space.
+  \item Find the pmf of $X_2$.
+  \item Find $P(X_1=3,\,X_2=3)$. Are $X_1$ and $X_2$ independent?
+  \item Find $\E[X_2]$ and $\Var(X_2)$. Where did you use independence?
+  \item Find $\Cov(X_1,X_2)$.
+\end{enumerate}
+
+\prob{LF}{A continuous joint density}
+Let $f(x,y)=x+y$ for $0\le x\le 1$, $0\le y\le 1$.
+\begin{enumerate}[label=(\alph*)]
+  \item Verify it integrates to 1.
+  \item Find $f_X(x)$ and the conditional density $f(y\mid x)$.
+  \item Find $\E[Y\mid X=x]$. Is the CEF linear in $x$?
+  \item Verify the LIE: compute $\E\big[\E[Y\mid X]\big]$ and compare with $\E[Y]$ computed from $f_Y$.
+\end{enumerate}
+
+\prob{LF}{Sums of random variables}
+\begin{enumerate}[label=(\alph*)]
+  \item Prove $\Var(X+Y)=\Var(X)+\Var(Y)+2\Cov(X,Y)$ from the definition of variance.
+  \item Let $X\sim N(10,4)$ and $Y\sim N(5,9)$ be independent. What is the distribution of $W=X+Y$? Find $P(W>20)$.
+  \item If instead $\Cov(X,Y)=3$, what is $\Var(X-Y)$?
+\end{enumerate}
+
+\prob{LF}{The CEF error}
+Let $\varepsilon=Y-\E[Y\mid X]$. Prove, step by step, that (i) $\E[\varepsilon\mid X]=0$, (ii) $\E[\varepsilon]=0$, and (iii) $\E[X\varepsilon]=0$. Name the property used at each step.
+
+%=====================================================================
+\clearpage
+\section{Day 3 (Wed Oct 14): What makes an estimator good}
+\markboth{Day 3: Estimators}{}
+
+\begin{planbox}[Session plan: 3.5 hours]
+\textbf{Read:} \emph{Estimation and Inference}, slides 4 to 35.\\
+\textbf{Redo:} HW1 Problem 4 (dice and the CLT), HW1 Problem 5 (comparing two estimators).\\
+\textbf{Goal:} Compute bias, variance, and MSE of an estimator; judge efficiency and consistency; use the CLT to approximate probabilities about $\Xbar$ or a sum.
+\end{planbox}
+
+\begin{keybox}
+\begin{itemize}
+  \item \textbf{Parameter} $\theta$ (fixed, unknown) $\;\to\;$ \textbf{estimator} $\hat\theta(X_1,\dots,X_n)$ (a random variable) $\;\to\;$ \textbf{estimate} (one realized number).
+  \item \textbf{Bias, variance, MSE:}
+  \[ \Bias(\hat\theta)=\E[\hat\theta]-\theta, \qquad \MSE(\hat\theta)=\E\big[(\hat\theta-\theta)^2\big]=\Var(\hat\theta)+\Bias(\hat\theta)^2. \]
+  \item \textbf{Sample mean (i.i.d.):} $\E[\Xbar]=\mu$, \quad $\Var(\Xbar)=\sigma^2/n$, \quad $\SE(\Xbar)=\sigma/\sqrt n$. \quad A sum: $\E[S_n]=n\mu$, $\Var(S_n)=n\sigma^2$.
+  \item \textbf{Sample variance:} $\tfrac1n\sum(X_i-\Xbar)^2$ has mean $\tfrac{n-1}{n}\sigma^2$; dividing by $n-1$ removes the bias.
+  \item \textbf{Efficiency:} among unbiased estimators, prefer the smaller variance.
+  \item \textbf{Consistency:} $\hat\theta_n\convp\theta$, meaning $P(|\hat\theta_n-\theta|>\epsilon)\to0$. Sufficient: $\E[\hat\theta_n]\to\theta$ and $\Var(\hat\theta_n)\to0$.
+  \item \textbf{LLN:} $\Xbar\convp\mu$ (where the estimator goes). \quad \textbf{CLT:} $\dfrac{\sqrt n(\Xbar-\mu)}{\sigma}\convd N(0,1)$, so $\Xbar\approx N(\mu,\sigma^2/n)$ for large $n$, whatever the parent shape.
+  \item Biased can still be consistent ($\tfrac{1}{n+1}\sum X_i$); unbiased can be inconsistent ($X_1$).
+\end{itemize}
+\end{keybox}
+
+\subsection{Practice problems}
+\setcounter{prob}{0}
+
+\prob{MC}{Bias and consistency}
+An estimator satisfies $\E[\hat\theta_n]=\theta+\tfrac{2}{n}$ and $\Var(\hat\theta_n)=\tfrac{5}{n}$. It is
+\begin{enumerate}[label=(\alph*)]
+  \item unbiased and consistent \quad (b) biased and consistent \quad (c) unbiased and inconsistent \quad (d) biased and inconsistent
+\end{enumerate}
+
+\prob{MC}{Standard error}
+If the sample size rises from $n=25$ to $n=100$, the standard error of $\Xbar$
+\begin{enumerate}[label=(\alph*)]
+  \item falls by a factor of 4 \quad (b) falls by a factor of 2 \quad (c) is unchanged \quad (d) rises by a factor of 2
+\end{enumerate}
+
+\prob{BA}{LLN versus CLT}
+In two or three sentences each: what does the LLN say about $\Xbar$, what does the CLT say, and why must $\Xbar-\mu$ be multiplied by $\sqrt n$ for the CLT?
+
+\prob{LF}{Three estimators (modeled on HW1 P5)}
+Let $X_1,\dots,X_n$ be i.i.d. with mean $\mu$ and variance $\sigma^2$, $n\ge 3$. Consider
+\[ \hat\mu_1=\frac{X_1+X_n}{2}, \qquad \hat\mu_2=\Xbar, \qquad \hat\mu_3=\frac{1}{n-1}\sum_{i=1}^n X_i. \]
+\begin{enumerate}[label=(\alph*)]
+  \item Find the expectation and bias of each.
+  \item Find the variance of each.
+  \item Which unbiased estimator is more efficient?
+  \item Which estimators are consistent? Justify each answer.
+\end{enumerate}
+
+\prob{LF}{Weighted average of two draws}
+Let $X_1,X_2$ be i.i.d. with mean $\mu$ and variance $\sigma^2$, and $\hat\mu_w=wX_1+(1-w)X_2$.
+\begin{enumerate}[label=(\alph*)]
+  \item Show $\hat\mu_w$ is unbiased for every $w$.
+  \item Find $\Var(\hat\mu_w)$ and the $w$ that minimizes it.
+\end{enumerate}
+
+\prob{LF}{When bias pays off}
+Let $\mu=10$, $\sigma^2=100$, $n=25$, and consider $\hat\mu_c=c\,\Xbar$.
+\begin{enumerate}[label=(\alph*)]
+  \item Show $\MSE(\hat\mu_c)=c^2\dfrac{\sigma^2}{n}+(c-1)^2\mu^2$.
+  \item Compute the MSE for $c=1$, $c=0.95$, and $c=0.9$. Which is best?
+  \item Why do we usually not use such estimators in practice? (Hint: what does the best $c$ depend on?)
+\end{enumerate}
+
+\prob{LF}{Uniform upper bound}
+$X_i\sim U[0,\theta]$ and the sample is $0.3,\ 0.9,\ 0.5,\ 0.7$.
+\begin{enumerate}[label=(\alph*)]
+  \item Compute $\hat\theta_1=\max_i X_i$ and $\hat\theta_2=2\Xbar$.
+  \item Given $\E[\hat\theta_1]=\tfrac{n}{n+1}\theta$, propose an unbiased version of $\hat\theta_1$ and compute it.
+  \item Using $\MSE(\hat\theta_1)=\dfrac{2\theta^2}{(n+1)(n+2)}$ and $\MSE(\hat\theta_2)=\dfrac{\theta^2}{3n}$, which is better at $n=4$?
+\end{enumerate}
+
+\prob{LF}{CLT approximations (modeled on HW1 P4)}
+\begin{enumerate}[label=(\alph*)]
+  \item A population (not normal) has $\mu=50$, $\sigma=16$. With $n=64$, approximate $P(\Xbar>53)$ and $P(48<\Xbar<52)$.
+  \item Roll 48 fair four-sided dice and let $S$ be the total. Find $\E[S]$, $\Var(S)$, and $\SD(S)$. (One die: mean 2.5, variance 1.25.)
+  \item Approximate $P(S>130)$, showing the standardization step.
+  \item Why does $S$ look bell-shaped even though one die is uniform?
+\end{enumerate}
+
+%=====================================================================
+\clearpage
+\section{Day 4 (Thu Oct 15): Inference and the population regression line}
+\markboth{Day 4: Inference}{}
+
+\begin{planbox}[Session plan: 3.75 hours]
+\textbf{Read:} \emph{Estimation and Inference}, slides 36 to 55; \emph{Introduction to Linear Regression}, slides 4 to 20.\\
+\textbf{Redo:} HW1 Problem 7 (test and CI, $\sigma$ unknown then known).\\
+\textbf{Goal:} Run $z$ and $t$ tests and intervals by hand with the tables; read a p-value correctly; derive the population regression coefficients from minimizing expected squared error.
+\end{planbox}
+
+\begin{keybox}
+\begin{itemize}
+  \item \textbf{Choosing the reference distribution for $\mu$:}
+  \[ \sigma \text{ known: } z=\frac{\Xbar-\mu_0}{\sigma/\sqrt n}\sim N(0,1), \qquad \sigma \text{ unknown (normal pop.): } t=\frac{\Xbar-\mu_0}{s/\sqrt n}\sim t_{n-1}. \]
+  Large $n$ with unknown parent: the $t$ statistic is approximately $N(0,1)$ by the CLT.
+  \item \textbf{Two-sided test at level $\alpha$:} reject $H_0$ when $|t|>t_{1-\alpha/2,\,n-1}$. \quad \textbf{CI:} $\Xbar\pm t_{1-\alpha/2,\,n-1}\,\dfrac{s}{\sqrt n}$.
+  \item A 95\% two-sided CI excludes $\mu_0$ exactly when the 5\% two-sided test rejects.
+  \item \textbf{p-value:} $P(\text{statistic at least as extreme as observed}\mid H_0)$. It is not $P(H_0 \text{ true}\mid\text{data})$.
+  \item Type I: reject a true $H_0$ (probability $\alpha$). Type II: fail to reject a false $H_0$ (probability $\beta$). Power $=1-\beta$.
+  \item We say ``fail to reject,'' never ``accept.''
+  \item \textbf{Population regression:} $(\beta_0,\beta_1)=\argmin_{c,m}\E[(Y-c-mX)^2]$ gives
+  \[ \beta_1=\frac{\Cov(X,Y)}{\Var(X)}=\rho_{XY}\frac{\sigma_Y}{\sigma_X}, \qquad \beta_0=\E[Y]-\beta_1\E[X], \qquad \E[u]=0,\ \E[Xu]=0. \]
+  \item The line is the best linear approximation to the CEF. If the CEF is linear, they coincide and $u=\varepsilon$.
+\end{itemize}
+\end{keybox}
+
+\subsection{Practice problems}
+\setcounter{prob}{0}
+
+\prob{MC}{p-values}
+A two-sided test gives $p=0.03$. Which statement is correct?
+\begin{enumerate}[label=(\alph*)]
+  \item There is a 3\% chance that $H_0$ is true.
+  \item If $H_0$ were true, a statistic at least this extreme would occur about 3\% of the time.
+  \item We accept $H_1$ with 97\% certainty.
+  \item At $\alpha=0.01$ we reject $H_0$.
+\end{enumerate}
+
+\prob{BA}{$z$ versus $t$}
+Explain why the $t$ distribution has heavier tails than $N(0,1)$, and when the difference matters.
+
+\prob{LF}{Test and interval (modeled on HW1 P7)}
+A random sample from a normal population: $12,\ 15,\ 11,\ 14,\ 13,\ 16,\ 10,\ 13$.
+\begin{enumerate}[label=(\alph*)]
+  \item Compute $\Xbar$ and $s$.
+  \item Test $H_0:\mu=11.5$ against $H_1:\mu\ne11.5$ at the 5\% level with $\sigma$ unknown.
+  \item Build the 95\% CI and connect it to part (b).
+  \item Test $H_0:\mu=11.5$ against $H_1:\mu>11.5$ at the 5\% level. Why can the answer differ from (b)?
+  \item Now suppose $\sigma=2$ is known. Redo the two-sided test and the 95\% CI. Explain why the conclusion changes even though $s=\sigma$ here.
+\end{enumerate}
+
+\prob{LF}{Size, power, and the cutoff}
+$X_1,\dots,X_{25}$ i.i.d. $N(\mu,1)$. Test $H_0:\mu=0$ against $H_1:\mu>0$, rejecting when $\Xbar>c$.
+\begin{enumerate}[label=(\alph*)]
+  \item Find $c$ so the test has size $\alpha=0.05$.
+  \item Find the power when the true mean is $\mu=0.5$, and the Type II error probability $\beta$.
+  \item What happens to $\alpha$ and $\beta$ if $c$ is raised? How can both fall at once?
+\end{enumerate}
+
+\prob{LF}{Deriving the population regression line}
+\begin{enumerate}[label=(\alph*)]
+  \item Write the first-order conditions of $\min_{c,m}\E[(Y-c-mX)^2]$ and show they imply $\E[u]=0$ and $\E[Xu]=0$.
+  \item Solve for $\beta_0$ and $\beta_1$.
+  \item Using the joint table from Day 2 (where $\E[X]=1.2$, $\E[Y]=21.5$, $\Var(X)=0.56$, $\Cov(X,Y)=2.2$), compute $\beta_0,\beta_1$.
+  \item Compare the line at $X=0,1,2$ with the CEF values $17.5,\ 20,\ 25$. Is the CEF linear? What is $\E[u\mid X=0]$?
+\end{enumerate}
+
+%=====================================================================
+\clearpage
+\section{Day 5 (Fri Oct 16): Simple OLS}
+\markboth{Day 5: Simple OLS}{}
+
+\begin{planbox}[Session plan: 3.5 hours]
+\textbf{Read:} \emph{Introduction to Linear Regression}, slides 21 to 50.\\
+\textbf{Redo:} HW2 Problem 1 (OLS by hand), HW2 Problem 2 (centering, shifting, rescaling).\\
+\textbf{Goal:} Derive and compute $\hat\beta_0,\hat\beta_1$ by hand, verify the algebraic properties, decompose TSS, and predict exactly how rescaling changes every output.
+\end{planbox}
+
+\begin{keybox}
+\begin{itemize}
+  \item \textbf{Objective:} $\min_{b_0,b_1}\sum_{i}(y_i-b_0-b_1x_i)^2$. \quad \textbf{Normal equations:}
+  \[ \sum_i \hat e_i=0, \qquad \sum_i x_i\hat e_i=0. \]
+  \item \textbf{Solution:}
+  \[ \hat\beta_1=\frac{\sum_i(x_i-\xbar)(y_i-\ybar)}{\sum_i(x_i-\xbar)^2}=\frac{\widehat{\Cov}(x,y)}{\widehat{\Var}(x)}, \qquad \hat\beta_0=\ybar-\hat\beta_1\xbar. \]
+  \item \textbf{Algebraic properties (with an intercept):} residuals sum to 0, are orthogonal to $x$ and to $\hat y$, the line passes through $(\xbar,\ybar)$, and $\bar{\hat y}=\ybar$. These hold by construction; they are not assumptions.
+  \item \textbf{Fit:} $\underbrace{\textstyle\sum(y_i-\ybar)^2}_{TSS}=\underbrace{\textstyle\sum(\hat y_i-\ybar)^2}_{ESS}+\underbrace{\textstyle\sum\hat e_i^2}_{RSS}$, \quad $R^2=\dfrac{ESS}{TSS}=1-\dfrac{RSS}{TSS}=\Corr(y,\hat y)^2$. In simple OLS, $ESS=\hat\beta_1^2\sum(x_i-\xbar)^2$.
+  \item \textbf{Rescaling:} if $x^*=ax+c$ and $y^*=by+d$ ($a,b\ne0$),
+  \[ \hat\beta_1^*=\frac{b}{a}\hat\beta_1, \qquad \hat\beta_0^*=b\hat\beta_0+d-\frac{b}{a}\hat\beta_1c, \qquad \hat y^*=b\hat y+d,\quad \hat e^*=b\,\hat e,\quad R^{2*}=R^2. \]
+\end{itemize}
+\end{keybox}
+
+\subsection{Practice problems}
+\setcounter{prob}{0}
+
+\prob{MC}{Mechanical versus assumed}
+In an OLS regression with an intercept, which is \textbf{not} guaranteed by the algebra?
+\begin{enumerate}[label=(\alph*)]
+  \item $\sum_i\hat e_i=0$ \quad (b) $\sum_i x_i\hat e_i=0$ \quad (c) $\E[u\mid X]=0$ \quad (d) the line passes through $(\xbar,\ybar)$
+\end{enumerate}
+
+\prob{MC}{Rescaling}
+Income $y$ is converted from dollars to thousands of dollars ($y^*=y/1000$). Which is unchanged?
+\begin{enumerate}[label=(\alph*)]
+  \item the slope \quad (b) the intercept \quad (c) the residuals \quad (d) $R^2$
+\end{enumerate}
+
+\prob{LF}{OLS by hand (modeled on HW2 P1)}
+\begin{center}
+\begin{tabular}{c|ccccc}
+$x_i$ & 2 & 4 & 6 & 8 & 10 \\ \hline
+$y_i$ & 5 & 9 & 10 & 15 & 16
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*)]
+  \item Compute $\xbar,\ \ybar,\ \hat\beta_1,\ \hat\beta_0$.
+  \item Compute the fitted values and residuals.
+  \item Verify $\sum\hat e_i=0$ and $\sum x_i\hat e_i=0$.
+  \item Compute TSS, ESS, RSS, and $R^2$. Check $TSS=ESS+RSS$.
+\end{enumerate}
+
+\prob{LF}{Deriving simple OLS}
+\begin{enumerate}[label=(\alph*)]
+  \item Differentiate $SSR(b_0,b_1)=\sum(y_i-b_0-b_1x_i)^2$ and write the two normal equations.
+  \item Solve them to obtain $\hat\beta_0$ and $\hat\beta_1$.
+  \item Show that $\sum_i\hat y_i\hat e_i=0$ follows from the normal equations.
+\end{enumerate}
+
+\prob{LF}{Rescaling (modeled on HW2 P2)}
+Use the regression from the OLS-by-hand problem, $\hat y=2.6+1.4x$.
+\begin{enumerate}[label=(\alph*)]
+  \item Center both variables. State the new slope and intercept without recomputing.
+  \item Let $y^*=2y+3$ and $x^*=x/2$. Derive the new slope and intercept, then check by substitution.
+  \item What happens to the residuals and $R^2$ in part (b)?
+  \item Derive the general formulas for $x^*=ax+c$, $y^*=by+d$.
+\end{enumerate}
+
+\prob{LF}{Reverse regression and regression through the origin}
+Same data.
+\begin{enumerate}[label=(\alph*)]
+  \item Regress $x$ on $y$ (with an intercept) and call the slope $\hat\gamma_1$. Show $\hat\beta_1\hat\gamma_1=R^2$ numerically.
+  \item Estimate $y_i=\beta x_i+e_i$ with \emph{no intercept}: $\tilde\beta=\sum x_iy_i/\sum x_i^2$. Do the residuals sum to zero? Why not?
+\end{enumerate}
+
+%=====================================================================
+\clearpage
+\section{Day 6 (Sat Oct 17): Matrices, least squares geometry, and the CLRM}
+\markboth{Day 6: Matrices and CLRM}{}
+
+\begin{planbox}[Session plan: 4 hours]
+\textbf{Read:} \emph{Multiple Regression and the CLRM}, all slides (1 to 47).\\
+\textbf{Redo:} HW2 Problem 3 (determinants, rank), HW2 Problem 4 (overdetermined system), HW2 Problem 6(a to d) (true or false on the CLRM).\\
+\textbf{Goal:} Do matrix arithmetic quickly and correctly, judge column rank, solve a least squares problem in $\mathbb{R}^3$, state A1 to A6 precisely, and linearize models.
+\end{planbox}
+
+\begin{keybox}
+\begin{itemize}
+  \item $\mathbf{A}$ is $m\times n$ and $\mathbf{B}$ is $n\times p$ $\Rightarrow$ $\mathbf{AB}$ is $m\times p$. In general $\mathbf{AB}\neq\mathbf{BA}$. Also $(\mathbf{AB})'=\mathbf{B}'\mathbf{A}'$ and $\det(\mathbf{AB})=\det\mathbf{A}\det\mathbf{B}$.
+  \item \textbf{$2\times2$ inverse:}
+  \[ \begin{bmatrix} a & b\\ c & d\end{bmatrix}^{-1}=\frac{1}{ad-bc}\begin{bmatrix} d & -b\\ -c & a\end{bmatrix}, \qquad \text{exists iff } ad-bc\neq0. \]
+  \item \textbf{Full column rank:} no column is a linear combination of the others, $\rank(\bX)=K$. Then $\bX'\bX$ is invertible. Dummy for every category plus an intercept breaks it.
+  \item \textbf{Least squares geometry:} $\hat{\mathbf b}=\mathbf{A}\hat{\mathbf x}$ is the point of $\Col(\mathbf A)$ closest to $\mathbf b$; the error is perpendicular: $\mathbf{A}'(\mathbf b-\mathbf A\hat{\mathbf x})=\mathbf 0\Rightarrow\hat{\mathbf x}=(\mathbf A'\mathbf A)^{-1}\mathbf A'\mathbf b$.
+  \item \textbf{Model:} $\by=\bX\bb+\be$ with $\by$: $n\times1$, $\bX$: $n\times K$ (first column $\iotav$), $\bb$: $K\times1$, $\be$: $n\times1$. Row $i$: $y_i=\mathbf x_i'\bb+\varepsilon_i$.
+  \item \textbf{Vector of ones:} $\iotav'\iotav=n$, \ $\iotav'\mathbf x=\sum x_i$, \ $\xbar=\tfrac1n\iotav'\mathbf x$, \ deviations $\mathbf x-\iotav\xbar=\big(\bI-\tfrac1n\iotav\iotav'\big)\mathbf x=\bM^0\mathbf x$.
+  \item \textbf{CLRM:} A1 linear in $\bb$; A2 $\rank(\bX)=K$; A3 $\E[\be\mid\bX]=\mathbf0$; A4 $\Var(\be\mid\bX)=\sigma^2\bI_n$; A5 $\bX$ fixed or random; A6 $\be\mid\bX\sim N(\mathbf0,\sigma^2\bI)$.
+  \item A3 is about the conditional \emph{mean}; A4 about conditional \emph{variances and covariances}. $\bX'\beh=\mathbf0$ is algebra and cannot test A3.
+\end{itemize}
+\end{keybox}
+
+\subsection{Practice problems}
+\setcounter{prob}{0}
+
+\prob{MC}{Rank}
+A regression has an intercept, a dummy $D_{\text{male}}$, and a dummy $D_{\text{female}}$, and every person is one or the other. Then
+\begin{enumerate}[label=(\alph*)]
+  \item $\bX$ has full column rank \quad (b) $\bX'\bX$ is singular \quad (c) OLS is unbiased but inefficient \quad (d) A4 fails
+\end{enumerate}
+
+\prob{MC}{Linear in parameters}
+Which model \textbf{cannot} be made linear in the parameters?
+\begin{enumerate}[label=(\alph*)]
+  \item $Y=\beta_0X^{\beta_1}e^{\varepsilon}$ \quad (b) $Y=\beta_0+\beta_1X^{\beta_2}+\varepsilon$ \quad (c) $Y=e^{\beta_0+\beta_1X+\varepsilon}$ \quad (d) $Y=\beta_0+\beta_1\ln X+\beta_2X^2+\varepsilon$
+\end{enumerate}
+
+\prob{LF}{Matrix arithmetic (modeled on HW2 P3)}
+\[ \mathbf A=\begin{bmatrix}2&1\\1&3\end{bmatrix}, \qquad \mathbf B=\begin{bmatrix}1&-1\\2&0\end{bmatrix}. \]
+\begin{enumerate}[label=(\alph*)]
+  \item Find $\det\mathbf A$, $\det\mathbf B$, $\mathbf A^{-1}$, $\mathbf B^{-1}$. Verify $\mathbf A\mathbf A^{-1}=\bI$.
+  \item Compute $\mathbf{AB}$ and $\mathbf{BA}$. Are they equal?
+  \item Check $\det(\mathbf{AB})=\det\mathbf A\det\mathbf B$.
+\end{enumerate}
+
+\prob{LF}{Which design matrix works?}
+\[ \bX_1=\begin{bmatrix}1&1&3\\1&2&5\\1&3&7\\1&4&9\end{bmatrix}, \qquad \bX_2=\begin{bmatrix}1&0&2\\1&1&3\\1&0&5\\1&1&1\end{bmatrix}. \]
+Which has full column rank? For the one that does not, write the exact linear dependence and explain what it means for $\bbh=(\bX'\bX)^{-1}\bX'\by$.
+
+\prob{LF}{Least squares in $\mathbb R^3$ (modeled on HW2 P4)}
+\[ \mathbf A=\begin{bmatrix}1&0\\1&1\\1&2\end{bmatrix}, \qquad \mathbf b=\begin{bmatrix}1\\2\\4\end{bmatrix}. \]
+\begin{enumerate}[label=(\alph*)]
+  \item Show that $\mathbf A\mathbf x=\mathbf b$ has no exact solution.
+  \item Compute $\mathbf A'\mathbf A$, $\mathbf A'\mathbf b$, and $\hat{\mathbf x}$.
+  \item Compute $\hat{\mathbf b}$ and $\mathbf e=\mathbf b-\hat{\mathbf b}$. Verify $\mathbf A'\mathbf e=\mathbf0$.
+  \item Explain why this is exactly a simple regression of $\mathbf b$ on $x=(0,1,2)$. Why do the residuals sum to zero?
+\end{enumerate}
+
+\prob{LF}{Matrix notation}
+Let $n=50$ and $K=4$.
+\begin{enumerate}[label=(\alph*)]
+  \item Give the dimensions of $\by,\ \bX,\ \bb,\ \be,\ \bX'\bX,\ \bX'\by,\ \iotav\iotav'$.
+  \item Write $\sum_i y_i$, $\ybar$, $\sum_i y_i^2$, and $\sum_i(y_i-\ybar)^2$ in matrix notation.
+  \item Show that $\bM^0=\bI-\tfrac1n\iotav\iotav'$ is symmetric and idempotent.
+\end{enumerate}
+
+\prob{LF}{Linearize these models}
+For each, transform into a model linear in the parameters (or explain why that fails), and say what you would regress on what.
+\begin{enumerate}[label=(\alph*)]
+  \item $Q=AL^{\alpha}K^{\gamma}e^{\varepsilon}$ \qquad (b) $Y=\dfrac{1}{\beta_0+\beta_1X+\varepsilon}$ \qquad (c) $Y=e^{\beta_0+\beta_1X+\varepsilon}$ \qquad (d) $Y=\beta_0+\beta_1X^{\beta_2}+\varepsilon$
+\end{enumerate}
+
+\prob{LF}{True or false on the CLRM (modeled on HW2 P6 and P7f)}
+State true or false and explain.
+\begin{enumerate}[label=(\alph*)]
+  \item If the disturbances are heteroskedastic, OLS estimates cannot be computed.
+  \item An omitted variable that affects $Y$ but is uncorrelated with every included regressor does not by itself violate exogeneity.
+  \item $\Var(\be\mid\bX)=\sigma^2\bI$ rules out both heteroskedasticity and correlation across observations.
+  \item Because $\sum_i\hat e_i=0$ in our sample, we have verified $\E[\varepsilon]=0$.
+  \item A student finds $\bX'\beh\approx\mathbf0$ in software output and concludes income and age are exogenous.
+  \item Exogeneity $\E[\varepsilon_i\mid\bX]=0$ is stronger than $\E[\varepsilon_i\mid\mathbf x_i]=0$.
+\end{enumerate}
+
+\prob{BA}{Omitted variables}
+In $TestScore_i=\beta_0+\beta_1STR_i+\varepsilon_i$, explain in three sentences why omitting $PctEL$ makes $\E[\varepsilon_i\mid STR_i]\ne0$, and which two conditions are needed.
+
+%=====================================================================
+\clearpage
+\section{Day 7 (Sun Oct 18): Matrix OLS, projections, FWL, and fit}
+\markboth{Day 7: Matrix OLS and FWL}{}
+
+\begin{planbox}[Session plan: 4 hours]
+\textbf{Read:} \emph{Least Squares Regression: Solving the Multiple-Regression OLS Problem} (all), \emph{Partial Effects and Goodness of Fit} (all).\\
+\textbf{Redo:} HW2 Problem 5 (projection and residual maker), HW2 Problem 6(e) (proof).\\
+\textbf{Goal:} Reproduce the derivation of $\bbh$ from scratch, prove the properties of $\bP$ and $\bM$, run FWL by hand, and compute $R^2$ and $\bar R^2$.
+\end{planbox}
+
+\begin{keybox}
+\begin{itemize}
+  \item \textbf{Objective:} $S(\mathbf b)=(\by-\bX\mathbf b)'(\by-\bX\mathbf b)=\by'\by-2\mathbf b'\bX'\by+\mathbf b'\bX'\bX\mathbf b$.
+  \item \textbf{Rules:} $\dfrac{\partial\,\mathbf a'\mathbf b}{\partial\mathbf b}=\mathbf a$, \quad $\dfrac{\partial\,\mathbf b'\mathbf A\mathbf b}{\partial\mathbf b}=(\mathbf A+\mathbf A')\mathbf b=2\mathbf A\mathbf b$ if $\mathbf A$ is symmetric.
+  \item \textbf{FOC and solution:}
+  \[ -2\bX'\by+2\bX'\bX\bbh=\mathbf0 \;\Rightarrow\; \bX'\bX\bbh=\bX'\by \;\Rightarrow\; \bbh=(\bX'\bX)^{-1}\bX'\by. \]
+  Hessian $2\bX'\bX$ is positive definite under A2, since $\mathbf c'\bX'\bX\mathbf c=\|\bX\mathbf c\|^2>0$ for $\mathbf c\neq\mathbf0$.
+  \item \textbf{Orthogonality:} $\bX'\beh=\mathbf0$. With an intercept, row 1 gives $\iotav'\beh=0$, so residuals sum to zero, the fit passes through the means, and $\bar{\hat y}=\ybar$.
+  \item \textbf{Projections:} $\bP=\bX(\bX'\bX)^{-1}\bX'$, $\bM=\bI-\bP$; both symmetric and idempotent; $\bP\bX=\bX$, $\bM\bX=\mathbf0$, $\bP\bM=\mathbf0$; $\hat\by=\bP\by$, $\beh=\bM\by$; $\tr(\bP)=K$, $\tr(\bM)=n-K$.
+  \item \textbf{FWL:} with $\by=\bX_1\bb_1+\bX_2\bb_2+\be$,
+  \[ \bbh_2=(\tilde{\bX}_2'\tilde{\bX}_2)^{-1}\tilde{\bX}_2'\tilde\by, \qquad \tilde{\bX}_2=\bM_{X_1}\bX_2,\quad \tilde\by=\bM_{X_1}\by, \]
+  and the residuals are identical. Partialling out only the intercept is demeaning, which gives simple OLS.
+  \item \textbf{Fit:} $\by'\bM^0\by=\hat\by'\bM^0\hat\by+\beh'\beh$ (TSS $=$ ESS $+$ RSS),
+  \[ R^2=1-\frac{RSS}{TSS}, \qquad \bar R^2=1-\frac{RSS/(n-K)}{TSS/(n-1)}=1-\frac{n-1}{n-K}(1-R^2). \]
+  $R^2$ never falls when a regressor is added; $\bar R^2$ can fall and can be negative.
+\end{itemize}
+\end{keybox}
+
+\subsection{Practice problems}
+\setcounter{prob}{0}
+
+\prob{MC}{Residual maker}
+$\bM_X\bX$ equals
+\begin{enumerate}[label=(\alph*)]
+  \item $\bX$ \quad (b) $\mathbf0$ \quad (c) $\bI$ \quad (d) $\bP_X$
+\end{enumerate}
+
+\prob{MC}{Adding a regressor}
+An irrelevant regressor is added to a model with an intercept. Then
+\begin{enumerate}[label=(\alph*)]
+  \item $R^2$ falls and $\bar R^2$ rises
+  \item $R^2$ cannot fall, while $\bar R^2$ may fall
+  \item both must rise
+  \item both must stay the same
+\end{enumerate}
+
+\prob{LF}{Deriving the OLS estimator (exam Example 3)}
+\begin{enumerate}[label=(\alph*)]
+  \item Set up the least squares problem for $\by=\bX\bb+\be$ and expand $S(\mathbf b)$. Explain why $\by'\bX\mathbf b=\mathbf b'\bX'\by$.
+  \item Differentiate term by term, set the gradient to zero, and obtain the normal equations.
+  \item State the assumption needed to solve for $\bbh$, then solve.
+  \item Show the solution is a minimum.
+  \item Show the normal equations imply $\bX'\beh=\mathbf0$, and that the residuals sum to zero when $\bX$ contains a column of ones.
+\end{enumerate}
+
+\prob{LF}{Projection matrices (modeled on HW2 P5)}
+Let $\bX=\begin{bmatrix}1&1\\1&2\\1&3\end{bmatrix}$ and $\by=(2,3,7)'$.
+\begin{enumerate}[label=(\alph*)]
+  \item Give the dimensions of $\bX'\bX$, $\bP$, and $\bM$. Compute $(\bX'\bX)^{-1}$ and $\bP$.
+  \item Verify numerically that $\bP$ is symmetric, and that $\tr(\bP)=2$.
+  \item Compute $\hat\by=\bP\by$ and $\beh=\bM\by$. Check $\hat\by'\beh=0$ and $\iotav'\beh=0$.
+  \item Prove in general that $\bP^2=\bP$, $\bM^2=\bM$, $\bP\bM=\mathbf0$, and $\bM\bX=\mathbf0$.
+\end{enumerate}
+
+\prob{LF}{FWL by hand}
+Consider $Y_i=\beta_1+\beta_2X_{2i}+\beta_3X_{3i}+\varepsilon_i$ with data:
+\begin{center}
+\begin{tabular}{c|ccccc}
+$Y$ & 4 & 8 & 8 & 11 & 14 \\
+$X_2$ & 1 & 3 & 2 & 5 & 4 \\
+$X_3$ & 2 & 3 & 5 & 6 & 9
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*)]
+  \item Step 1: regress $X_2$ on a constant and $X_3$. Report $\hat\gamma_1,\hat\gamma_2$ and the residuals $\hat v_i$.
+  \item Step 2: regress $Y$ on a constant and $X_3$. Report $\hat\delta_1,\hat\delta_2$ and the residuals $\hat u_i$.
+  \item Step 3: regress $\hat u$ on $\hat v$ without an intercept. Why is no intercept needed?
+  \item Software reports $\hat\beta_2=0.846$ for the full regression. Does your Step 3 match?
+  \item The simple regression of $Y$ on $X_2$ alone gives slope $2.0$. Explain the gap in terms of ``holding $X_3$ constant.''
+\end{enumerate}
+
+\prob{LF}{The intercept as a control}
+\begin{enumerate}[label=(\alph*)]
+  \item For $n=3$, write out $\bM^0=\bI-\tfrac13\iotav\iotav'$ and compute $\bM^0\mathbf y$ for $\by=(2,3,7)'$.
+  \item Use FWL with $\bX_1=\iotav$ to show the slope in simple regression is $\sum(x_i-\xbar)(y_i-\ybar)/\sum(x_i-\xbar)^2$.
+\end{enumerate}
+
+\prob{LF}{$R^2$ and adjusted $R^2$}
+A regression with $n=30$ and $K=4$ (intercept included) has $TSS=500$ and $RSS=150$.
+\begin{enumerate}[label=(\alph*)]
+  \item Compute $R^2$ and $\bar R^2$.
+  \item A fifth regressor lowers RSS to 148. Recompute both. Which rose and which fell?
+  \item Explain in words why $R^2$ cannot fall when a regressor is added.
+  \item Give one reason a low $R^2$ does not mean a regression is useless.
+\end{enumerate}
+
+%=====================================================================
+\clearpage
+\section{Solutions}
+\markboth{Solutions}{}
+
+\noindent Check answers only after attempting the whole day. Rounded values use four decimals unless noted.
+
+%---------------------------------------------------------------- Day 1
+\subsection{Day 1 solutions}
+
+\sol{1 [MC]} \textbf{(c).} A single point has probability zero for a continuous variable, so including or excluding endpoints changes nothing. (a) fails: densities can exceed 1. (b) fails: $P(X=2)=0$. (d) fails: CDFs never decrease.
+
+\sol{2 [MC]} \textbf{(a).} $\Var(Y)=1.8^2\cdot25=81$, so $\SD(Y)=1.8\cdot5=9$. The shift by 32 changes only the mean.
+
+\sol{3 [BA]} Not valid. It integrates to one, $\int_0^2(x-\tfrac12)\,dx=2-1=1$, but it is negative on $[0,\tfrac12)$, so it fails $f(x)\ge0$.
+
+\sol{4 [LF]}
+(a) $\displaystyle\int_0^3 cx^2\,dx=c\cdot\frac{27}{3}=9c=1\Rightarrow c=\frac19.$
+
+(b) $F(x)=0$ for $x<0$; \ $F(x)=\displaystyle\int_0^x\frac{t^2}{9}\,dt=\frac{x^3}{27}$ for $0\le x\le3$; \ $F(x)=1$ for $x>3$.
+
+(c) $\displaystyle\int_1^2\frac{x^2}{9}\,dx=\frac{8-1}{27}=\frac{7}{27}\approx0.2593$, and $F(2)-F(1)=\frac{8}{27}-\frac1{27}=\frac7{27}$.
+
+(d)
+\[ \E[X]=\int_0^3\frac{x^3}{9}\,dx=\frac{81}{36}=\frac94, \qquad \E[X^2]=\int_0^3\frac{x^4}{9}\,dx=\frac{243}{45}=\frac{27}{5}, \]\[ \Var(X)=\frac{27}{5}-\frac{81}{16}=\frac{27}{80}\approx0.3375. \]
+
+(e) $F(m)=\tfrac12\Rightarrow m^3=13.5\Rightarrow m\approx2.381$. $P(X=2)=0$, because a single point has zero width, so $\int_2^2 f=0$.
+
+\sol{5 [LF]}
+(a) $c(1+2+3+4)=10c=1\Rightarrow c=0.1$, so the pmf is $0.1,0.2,0.3,0.4$.
+
+(b) $F(x)=0$ for $x<1$; $0.1$ on $[1,2)$; $0.3$ on $[2,3)$; $0.6$ on $[3,4)$; $1$ for $x\ge4$.
+
+(c) $\E[X]=0.1+0.4+0.9+1.6=3$; \ $\E[X^2]=0.1+0.8+2.7+6.4=10$; \ $\Var(X)=10-9=1$.
+
+(d) $\E[W]=10-2\cdot3=4$; \ $\Var(W)=(-2)^2\cdot1=4$.
+
+\sol{6 [LF]}
+(a) $P(X>130)=1-\Phi(2)=1-0.9772=0.0228$. \ $P(85<X<115)=\Phi(1)-\Phi(-1)=0.8413-0.1587=0.6826$.
+
+(b) $z$ values: $(30-40)/8=-1.25$ and $(52-40)/8=1.5$. So $P=\Phi(1.5)-\big(1-\Phi(1.25)\big)=0.9332-0.1056=0.8276$.
+
+(c) $\Phi(z)=0.95\Rightarrow z\approx1.645$, so $y^*=40+1.645\cdot8\approx53.2$ hours.
+
+\sol{7 [LF]}
+(a) $[0,1]$.
+
+(b) For $0\le y\le1$: $F_Y(y)=P(\sqrt X\le y)=P(X\le y^2)=y^2$, so $f_Y(y)=2y$ on $[0,1]$.
+
+(c) $\E[Y]=\int_0^1 y\cdot2y\,dy=\tfrac23$, and $\E[\sqrt X]=\int_0^1\sqrt x\cdot1\,dx=\tfrac23$. They agree.
+
+(d) A transformation moves probability: $\sqrt{\cdot}$ stretches small values apart and pushes mass toward 1. The density must be rebuilt through the CDF; applying $g$ to $f_X$ ignores how the map stretches the axis.
+
+\sol{8 [LF]} (Continuous case; replace integrals with sums for discrete.)
+
+(a) $\E[a+bX]=\int(a+bx)f(x)\,dx=a\int f(x)\,dx+b\int xf(x)\,dx=a+b\E[X]$.
+
+(b) $\E[(X-\mu)^2]=\E[X^2-2\mu X+\mu^2]=\E[X^2]-2\mu\E[X]+\mu^2=\E[X^2]-\mu^2$.
+
+(c) $(a+bX)-\E[a+bX]=b(X-\mu)$, so $\Var(a+bX)=\E[b^2(X-\mu)^2]=b^2\Var(X)$.
+
+(d) Apply (a) and (c) with $a=-\mu/\sigma$, $b=1/\sigma$: $\E[Z]=(\mu-\mu)/\sigma=0$ and $\Var(Z)=\sigma^2/\sigma^2=1$.
+
+%---------------------------------------------------------------- Day 2
+\subsection{Day 2 solutions}
+
+\sol{1 [MC]} \textbf{(a).} The LIE holds for any pair of random variables, independent or not. (b), (c), (d) are each equivalent to independence.
+
+\sol{2 [BA]} $\E[X]=0$ and $\E[XY]=\E[X^3]=\tfrac13(-1+0+1)=0$, so $\Cov(X,Y)=0-0\cdot\E[Y]=0$. But $P(Y=0\mid X=0)=1\neq P(Y=0)=\tfrac13$, so they are dependent. $Y$ is a perfect, but nonlinear, function of $X$.
+
+\sol{3 [LF]}
+(a) $X$: $P(0)=0.20$, $P(1)=0.40$, $P(2)=0.40$; \ $\E[X]=0.4+0.8=1.2$. \ $Y$: $P(10)=0.25$, $P(20)=0.35$, $P(30)=0.40$; \ $\E[Y]=2.5+7+12=21.5$.
+
+(b) Divide row $X=2$ by $0.40$: $0.125,\ 0.25,\ 0.625$. \ $\E[Y\mid X=2]=1.25+5+18.75=25$.
+
+(c) $\E[Y\mid X=0]$: probabilities $0.5,0.25,0.25$, mean $17.5$. \ $\E[Y\mid X=1]$: $0.25,0.5,0.25$, mean $20$. Then
+\[ \E\big[\E[Y\mid X]\big]=0.2(17.5)+0.4(20)+0.4(25)=3.5+8+10=21.5=\E[Y]. \]
+
+(d) $\E[XY]=1\cdot(1+4+3)+2\cdot(0.5+2+7.5)=8+20=28$, so $\Cov=28-1.2(21.5)=2.2$. \ $\Var(X)=2.0-1.44=0.56$; \ $\E[Y^2]=25+140+360=525$, $\Var(Y)=525-462.25=62.75$.
+\[ \Corr(X,Y)=\frac{2.2}{\sqrt{0.56\times62.75}}=\frac{2.2}{5.928}\approx0.371. \]
+
+(e) No: $P(X=0,Y=10)=0.10\ne P(X=0)P(Y=10)=0.2\times0.25=0.05$.
+
+\sol{4 [LF]}
+(a) Eight equally likely pairs $(x_1,c)$: $(1,T),(2,T),(3,T),(4,T),(1,H),(2,H),(3,H),(4,H)$.
+
+(b) Tails gives $X_2\in\{1,2,3,4\}$; heads gives $\{3,4,5,6\}$. So $P(1)=P(2)=P(5)=P(6)=\tfrac18$ and $P(3)=P(4)=\tfrac28$.
+
+(c) $P(X_1=3,X_2=3)=P(X_1=3,C=0)=\tfrac18$, while $P(X_1=3)P(X_2=3)=\tfrac14\cdot\tfrac14=\tfrac1{16}$. Not independent.
+
+(d) $\E[X_2]=2.5+2(0.5)=3.5$. Since $X_1$ and $C$ are independent, $\Var(X_2)=\Var(X_1)+4\Var(C)=1.25+4(0.25)=2.25$. Independence kills the covariance term.
+
+(e) $\Cov(X_1,X_1+2C)=\Var(X_1)+2\Cov(X_1,C)=1.25$.
+
+\sol{5 [LF]}
+(a) $\int_0^1\!\int_0^1(x+y)\,dy\,dx=\int_0^1\big(x+\tfrac12\big)dx=\tfrac12+\tfrac12=1$.
+
+(b) $f_X(x)=x+\tfrac12$, so $f(y\mid x)=\dfrac{x+y}{x+\tfrac12}$ on $[0,1]$.
+
+(c)
+\[ \E[Y\mid X=x]=\frac{\int_0^1 y(x+y)\,dy}{x+\frac12}=\frac{\frac x2+\frac13}{x+\frac12}=\frac{3x+2}{6x+3}. \]
+This is not linear in $x$ (it falls from $\tfrac23$ at $x=0$ to $\tfrac59$ at $x=1$).
+
+(d) $\E\big[\E[Y\mid X]\big]=\int_0^1\big(\tfrac x2+\tfrac13\big)dx=\tfrac14+\tfrac13=\tfrac7{12}$. Directly, $f_Y(y)=y+\tfrac12$ gives $\E[Y]=\tfrac13+\tfrac14=\tfrac7{12}$. They match.
+
+\sol{6 [LF]}
+(a) $\Var(X+Y)=\E\big[\big((X-\mu_X)+(Y-\mu_Y)\big)^2\big]=\E[(X-\mu_X)^2]+\E[(Y-\mu_Y)^2]+2\E[(X-\mu_X)(Y-\mu_Y)]$.
+
+(b) $W\sim N(15,13)$, $\SD=3.606$. $P(W>20)=1-\Phi(5/3.606)=1-\Phi(1.39)=1-0.9177=0.0823$.
+
+(c) $\Var(X-Y)=4+9-2(3)=7$.
+
+\sol{7 [LF]}
+(i) $\E[\varepsilon\mid X]=\E[Y\mid X]-\E\big[\E[Y\mid X]\mid X\big]=\E[Y\mid X]-\E[Y\mid X]=0$, since a function of $X$ is a known constant once we condition on $X$.
+
+(ii) By the LIE, $\E[\varepsilon]=\E\big[\E[\varepsilon\mid X]\big]=\E[0]=0$.
+
+(iii) By the LIE and pulling out what is known, $\E[X\varepsilon]=\E\big[X\,\E[\varepsilon\mid X]\big]=\E[X\cdot0]=0$.
+
+%---------------------------------------------------------------- Day 3
+\subsection{Day 3 solutions}
+
+\sol{1 [MC]} \textbf{(b).} The bias $2/n\neq0$ for finite $n$ but vanishes, and the variance goes to zero, so it is consistent.
+
+\sol{2 [MC]} \textbf{(b).} $\SE=\sigma/\sqrt n$, and $\sqrt{100}/\sqrt{25}=2$.
+
+\sol{3 [BA]} The LLN says $\Xbar\convp\mu$: the sampling distribution collapses onto $\mu$. The CLT describes the \emph{shape} of the error around $\mu$: $\sqrt n(\Xbar-\mu)/\sigma\convd N(0,1)$. Since $\Var(\Xbar-\mu)=\sigma^2/n\to0$, multiplying by $\sqrt n$ is the exact rate that keeps the variance at $\sigma^2$, so the distribution neither collapses to a point nor explodes.
+
+\sol{4 [LF]}
+(a) $\E[\hat\mu_1]=\mu$ and $\E[\hat\mu_2]=\mu$ (both unbiased). $\E[\hat\mu_3]=\dfrac{n\mu}{n-1}$, bias $\dfrac{\mu}{n-1}$.
+
+(b) $\Var(\hat\mu_1)=\tfrac14(2\sigma^2)=\tfrac{\sigma^2}{2}$; \ $\Var(\hat\mu_2)=\tfrac{\sigma^2}{n}$; \ $\Var(\hat\mu_3)=\dfrac{n\sigma^2}{(n-1)^2}$.
+
+(c) $\hat\mu_2$, since $\sigma^2/n<\sigma^2/2$ for $n\ge3$.
+
+(d) $\hat\mu_2$: unbiased with variance to zero, consistent. $\hat\mu_3$: bias and variance both go to zero, consistent (biased but consistent). $\hat\mu_1$: variance stays at $\sigma^2/2$, so it never concentrates; not consistent. It ignores all but two observations.
+
+\sol{5 [LF]}
+(a) $\E[\hat\mu_w]=w\mu+(1-w)\mu=\mu$.
+
+(b) $\Var(\hat\mu_w)=\big(w^2+(1-w)^2\big)\sigma^2$. Setting the derivative $2w-2(1-w)=0$ gives $w=\tfrac12$, with variance $\sigma^2/2$. Equal weights win.
+
+\sol{6 [LF]}
+(a) $\E[c\Xbar]=c\mu$, so $\Bias=(c-1)\mu$, and $\Var(c\Xbar)=c^2\sigma^2/n$. Add variance and squared bias.
+
+(b) $\sigma^2/n=4$ and $\mu^2=100$:
+\[ c=1:\ 4.00 \qquad c=0.95:\ 0.9025(4)+0.0025(100)=3.86 \qquad c=0.9:\ 0.81(4)+0.01(100)=4.24. \]
+$c=0.95$ is best here: a little bias buys a larger drop in variance.
+
+(c) The best $c=\mu^2/(\mu^2+\sigma^2/n)$ depends on the unknown $\mu$ and $\sigma^2$, so it cannot be computed in practice.
+
+\sol{7 [LF]}
+(a) $\hat\theta_1=0.9$; \ $\Xbar=2.4/4=0.6$, so $\hat\theta_2=1.2$.
+
+(b) $\dfrac{n+1}{n}\max X_i=\dfrac54(0.9)=1.125$.
+
+(c) $\MSE(\hat\theta_1)=\dfrac{2\theta^2}{5\cdot6}=\dfrac{\theta^2}{15}$ and $\MSE(\hat\theta_2)=\dfrac{\theta^2}{12}$. The biased maximum has lower MSE.
+
+\sol{8 [LF]}
+(a) $\SE(\Xbar)=16/8=2$. $P(\Xbar>53)=1-\Phi(1.5)=0.0668$. $P(48<\Xbar<52)=\Phi(1)-\Phi(-1)=0.6826$.
+
+(b) $\E[S]=48(2.5)=120$, $\Var(S)=48(1.25)=60$ (independence lets variances add), $\SD(S)=\sqrt{60}\approx7.746$.
+
+(c) $z=(130-120)/7.746=1.29$, so $P(S>130)\approx1-\Phi(1.29)=1-0.9015=0.0985$.
+
+(d) Each extra die convolves the distribution again. Many middle totals can be reached by many combinations, while extreme totals have few, so mass piles up in the center. The CLT makes this precise.
+
+%---------------------------------------------------------------- Day 4
+\subsection{Day 4 solutions}
+
+\sol{1 [MC]} \textbf{(b).} (a) confuses $P(\text{data}\mid H_0)$ with $P(H_0\mid\text{data})$. (d) is wrong because $0.03>0.01$.
+
+\sol{2 [BA]} Replacing $\sigma$ with the estimate $s$ adds a second source of randomness, so extreme ratios are more likely: heavier tails and larger critical values. With few degrees of freedom the gap is large ($t_{0.975,7}=2.365$ versus $1.96$); as $n$ grows, $t_{n-1}\to N(0,1)$ and the gap vanishes (small for $n>30$).
+
+\sol{3 [LF]}
+(a) $\Xbar=104/8=13$. Deviations $-1,2,-2,1,0,3,-3,0$, squares sum to $28$. $s^2=28/7=4$, $s=2$.
+
+(b) $\SE=2/\sqrt8=0.7071$, \ $t=(13-11.5)/0.7071=2.121$. With $t_{0.975,7}=2.365$: $|t|<2.365$, \textbf{fail to reject}. (Two-sided $p\approx0.072$.)
+
+(c) $13\pm2.365(0.7071)=13\pm1.672=[11.33,\ 14.67]$. It contains $11.5$, matching the failure to reject.
+
+(d) One-sided critical value $t_{0.95,7}=1.895$. Since $2.121>1.895$, \textbf{reject}. The one-sided test puts all 5\% in one tail, so its cutoff is lower in that direction.
+
+(e) $z=2.121>1.96$: \textbf{reject} (two-sided $p\approx0.034$). CI: $13\pm1.96(0.7071)=[11.61,\ 14.39]$, which excludes $11.5$. Knowing $\sigma$ removes the extra uncertainty from estimating it, so the reference distribution is $N(0,1)$ with the smaller critical value $1.96$.
+
+\sol{4 [LF]}
+(a) Under $H_0$, $\Xbar\sim N(0,1/25)$, $\SE=0.2$. $c=1.645(0.2)=0.329$.
+
+(b) Power $=P(\Xbar>0.329\mid\mu=0.5)=P\big(Z>(0.329-0.5)/0.2\big)=P(Z>-0.855)\approx\Phi(0.86)=0.805$. So $\beta\approx0.195$.
+
+(c) Raising $c$ lowers $\alpha$ but raises $\beta$. Both fall only with more information: a larger $n$ (smaller SE) separates the null and alternative distributions.
+
+\sol{5 [LF]}
+(a) FOCs:
+\[ \frac{\partial}{\partial c}:\ \E[-2(Y-\beta_0-\beta_1X)]=0, \qquad \frac{\partial}{\partial m}:\ \E[-2X(Y-\beta_0-\beta_1X)]=0, \]
+which are $\E[u]=0$ and $\E[Xu]=0$ with $u=Y-\beta_0-\beta_1X$.
+
+(b) The first gives $\beta_0=\E[Y]-\beta_1\E[X]$. Substitute into the second: $\E[XY]-\E[X]\E[Y]-\beta_1(\E[X^2]-\E[X]^2)=0$, so $\beta_1=\Cov(X,Y)/\Var(X)$.
+
+(c) $\beta_1=2.2/0.56\approx3.929$, \ $\beta_0=21.5-3.929(1.2)\approx16.786$.
+
+(d) Line: $16.79,\ 20.71,\ 24.64$ at $X=0,1,2$, versus CEF $17.5,\ 20,\ 25$. The CEF is not linear (it rises by 2.5 then by 5). $\E[u\mid X=0]=17.5-16.79=0.71\ne0$: the population regression error has mean zero and is uncorrelated with $X$, but its conditional mean is not zero when the CEF is nonlinear.
+
+%---------------------------------------------------------------- Day 5
+\subsection{Day 5 solutions}
+
+\sol{1 [MC]} \textbf{(c).} That is a population assumption; (a), (b), (d) follow from the normal equations.
+
+\sol{2 [MC]} \textbf{(d).} Slope, intercept, and residuals all scale by $1/1000$; $R^2$ is unit-free.
+
+\sol{3 [LF]}
+(a) $\xbar=6$, $\ybar=11$. Deviations: $x$: $-4,-2,0,2,4$; $y$: $-6,-2,-1,4,5$.
+\[ \sum(x_i-\xbar)(y_i-\ybar)=24+4+0+8+20=56, \qquad \sum(x_i-\xbar)^2=40, \]\[ \hat\beta_1=1.4, \qquad \hat\beta_0=11-1.4(6)=2.6. \]
+
+(b) $\hat y=5.4,\ 8.2,\ 11.0,\ 13.8,\ 16.6$; \ $\hat e=-0.4,\ 0.8,\ -1.0,\ 1.2,\ -0.6$.
+
+(c) $\sum\hat e_i=0$. \ $\sum x_i\hat e_i=-0.8+3.2-6+9.6-6=0$.
+
+(d) $TSS=36+4+1+16+25=82$; \ $RSS=0.16+0.64+1+1.44+0.36=3.6$; \ $ESS=1.4^2(40)=78.4$. \ $78.4+3.6=82$, and $R^2=78.4/82\approx0.956$.
+
+\sol{4 [LF]}
+(a)
+\[ \frac{\partial SSR}{\partial b_0}=-2\sum(y_i-b_0-b_1x_i)=0, \qquad \frac{\partial SSR}{\partial b_1}=-2\sum x_i(y_i-b_0-b_1x_i)=0, \]
+that is, $n\hat\beta_0+\hat\beta_1\sum x_i=\sum y_i$ and $\hat\beta_0\sum x_i+\hat\beta_1\sum x_i^2=\sum x_iy_i$.
+
+(b) Divide the first by $n$: $\hat\beta_0=\ybar-\hat\beta_1\xbar$. Substitute into the second and use $\sum x_iy_i-n\xbar\ybar=\sum(x_i-\xbar)(y_i-\ybar)$ and $\sum x_i^2-n\xbar^2=\sum(x_i-\xbar)^2$.
+
+(c) $\sum\hat y_i\hat e_i=\hat\beta_0\sum\hat e_i+\hat\beta_1\sum x_i\hat e_i=0+0$.
+
+\sol{5 [LF]}
+(a) Slope stays $1.4$; intercept becomes $0$, since the centered line passes through $(0,0)$.
+
+(b) $a=\tfrac12,\ c=0,\ b=2,\ d=3$: slope $\dfrac{2}{1/2}(1.4)=5.6$; intercept $2(2.6)+3-0=8.2$. Check: $2\hat y+3=8.2+2.8x=8.2+5.6x^*$.
+
+(c) Residuals double ($\hat e^*=2\hat e$); $R^2$ unchanged at $0.956$.
+
+(d) Substitute $x=(x^*-c)/a$ into $by+d$:
+\[ b\hat y+d=b\hat\beta_0+d+b\hat\beta_1\frac{x^*-c}{a}=\Big(b\hat\beta_0+d-\frac{b}{a}\hat\beta_1c\Big)+\frac{b}{a}\hat\beta_1x^*. \]
+Since OLS on the transformed data reproduces this (same minimization in new units), these are the new coefficients.
+
+\sol{6 [LF]}
+(a) $\hat\gamma_1=\dfrac{\sum(x_i-\xbar)(y_i-\ybar)}{\sum(y_i-\ybar)^2}=\dfrac{56}{82}=0.683$. Then $1.4\times0.683=0.956=R^2$. In general $\hat\beta_1\hat\gamma_1=r_{xy}^2$.
+
+(b) $\sum x_iy_i=386$, $\sum x_i^2=220$, $\tilde\beta=1.7545$. $\sum\tilde e_i=\sum y_i-\tilde\beta\sum x_i=55-52.64=2.36\neq0$. Without $\iotav$ in $\bX$, there is no normal equation forcing the residuals to sum to zero; only $\sum x_i\tilde e_i=0$ holds.
+
+%---------------------------------------------------------------- Day 6
+\subsection{Day 6 solutions}
+
+\sol{1 [MC]} \textbf{(b).} $D_{\text{male}}+D_{\text{female}}=\iotav$, an exact linear dependence (dummy variable trap).
+
+\sol{2 [MC]} \textbf{(b).} The parameter $\beta_2$ sits in an exponent of $X$ and cannot be separated additively. (a) and (c) linearize with logs; (d) is already linear in the $\beta$'s.
+
+\sol{3 [LF]}
+(a) $\det\mathbf A=6-1=5$, $\det\mathbf B=0-(-2)=2$.
+\[ \mathbf A^{-1}=\frac15\begin{bmatrix}3&-1\\-1&2\end{bmatrix}, \qquad \mathbf B^{-1}=\frac12\begin{bmatrix}0&1\\-2&1\end{bmatrix}, \qquad \mathbf A\mathbf A^{-1}=\frac15\begin{bmatrix}5&0\\0&5\end{bmatrix}=\bI. \]
+
+(b)
+\[ \mathbf{AB}=\begin{bmatrix}4&-2\\7&-1\end{bmatrix}, \qquad \mathbf{BA}=\begin{bmatrix}1&-2\\4&2\end{bmatrix}. \]
+Not equal.
+
+(c) $\det(\mathbf{AB})=-4+14=10=5\times2$.
+
+\sol{4 [LF]} $\bX_2$ has full column rank (3). In $\bX_1$, column 3 $=1\cdot$column 1 $+\,2\cdot$column 2 (check: $1+2\cdot1=3$, $1+2\cdot2=5$, and so on), so $\rank(\bX_1)=2<3$. Then $\bX_1'\bX_1$ is singular, $(\bX_1'\bX_1)^{-1}$ does not exist, and infinitely many coefficient vectors give the same fit; the coefficients are not identified.
+
+\sol{5 [LF]}
+(a) Rows 1 and 2 force $x_1=1$, $x_2=1$, but then row 3 gives $3\neq4$.
+
+(b)
+\[ \mathbf A'\mathbf A=\begin{bmatrix}3&3\\3&5\end{bmatrix}, \quad \mathbf A'\mathbf b=\begin{bmatrix}7\\10\end{bmatrix}, \quad (\mathbf A'\mathbf A)^{-1}=\frac16\begin{bmatrix}5&-3\\-3&3\end{bmatrix}, \quad \hat{\mathbf x}=\frac16\begin{bmatrix}5\\9\end{bmatrix}=\begin{bmatrix}5/6\\3/2\end{bmatrix}. \]
+
+(c) $\hat{\mathbf b}=(5/6,\ 7/3,\ 23/6)'\approx(0.833,\ 2.333,\ 3.833)'$; \ $\mathbf e=(1/6,\ -1/3,\ 1/6)'$. \ $\mathbf A'\mathbf e=\big(\tfrac16-\tfrac13+\tfrac16,\ 0-\tfrac13+\tfrac26\big)'=(0,0)'$.
+
+(d) Column 1 is $\iotav$ and column 2 is $x=(0,1,2)$, so this is $b_i=\beta_0+\beta_1x_i+e_i$ with $\hat\beta_0=5/6$, $\hat\beta_1=3/2$. The first row of $\mathbf A'\mathbf e=\mathbf0$ is $\iotav'\mathbf e=0$.
+
+\sol{6 [LF]}
+(a) $\by,\be$: $50\times1$; $\bX$: $50\times4$; $\bb$: $4\times1$; $\bX'\bX$: $4\times4$; $\bX'\by$: $4\times1$; $\iotav\iotav'$: $50\times50$.
+
+(b) $\sum y_i=\iotav'\by$; \ $\ybar=\tfrac1n\iotav'\by$; \ $\sum y_i^2=\by'\by$; \ $\sum(y_i-\ybar)^2=(\bM^0\by)'(\bM^0\by)=\by'\bM^0\by$.
+
+(c) $(\bM^0)'=\bI-\tfrac1n(\iotav\iotav')'=\bM^0$. And
+\[ (\bM^0)^2=\bI-\tfrac2n\iotav\iotav'+\tfrac1{n^2}\iotav(\iotav'\iotav)\iotav'=\bI-\tfrac2n\iotav\iotav'+\tfrac1n\iotav\iotav'=\bM^0, \]
+using $\iotav'\iotav=n$.
+
+\sol{7 [LF]}
+(a) $\ln Q=\ln A+\alpha\ln L+\gamma\ln K+\varepsilon$: regress $\ln Q$ on a constant, $\ln L$, $\ln K$.
+
+(b) $1/Y=\beta_0+\beta_1X+\varepsilon$: regress $1/Y$ on a constant and $X$.
+
+(c) $\ln Y=\beta_0+\beta_1X+\varepsilon$: regress $\ln Y$ on a constant and $X$.
+
+(d) Cannot be linearized: $\partial m/\partial\beta_1=X^{\beta_2}$ depends on a parameter, and the additive error blocks taking logs. (If $\beta_2$ were known, regress $Y$ on $X^{\beta_2}$.)
+
+\sol{8 [LF]}
+(a) \textbf{False.} OLS needs only A2 (full rank). Heteroskedasticity affects the variance of $\bbh$, not whether it can be computed.
+
+(b) \textbf{True.} It goes into $\varepsilon$ but carries no information about the regressors, so $\E[\varepsilon\mid\bX]=0$ can still hold.
+
+(c) \textbf{True.} Equal diagonal entries rule out heteroskedasticity; zero off-diagonals rule out correlation across observations.
+
+(d) \textbf{False.} $\sum\hat e_i=0$ holds by construction whenever an intercept is included; it says nothing about the unobserved $\varepsilon$.
+
+(e) \textbf{Not justified.} $\bX'\beh=\mathbf0$ is a normal equation that holds in every sample whether or not $\E[\varepsilon\mid\bX]=0$. Exogeneity is about the unobserved population disturbance and must be argued, not read off residuals.
+
+(f) \textbf{True.} Conditioning on all of $\bX$ also rules out information in other observations' regressors.
+
+\sol{9 [BA]} Districts with more English learners score lower and also tend to have larger classes. If $PctEL$ is left out, it moves into $\varepsilon$, and since $STR$ is correlated with it, knowing $STR$ shifts the expected disturbance. Both conditions are needed: the omitted variable affects $Y$, and it is related to an included regressor.
+
+%---------------------------------------------------------------- Day 7
+\subsection{Day 7 solutions}
+
+\sol{1 [MC]} \textbf{(b).} $\bM\bX=\bX-\bX(\bX'\bX)^{-1}\bX'\bX=\bX-\bX=\mathbf0$.
+
+\sol{2 [MC]} \textbf{(b).}
+
+\sol{3 [LF]}
+(a) $\min_{\mathbf b}S(\mathbf b)$ with $S(\mathbf b)=\by'\by-\by'\bX\mathbf b-\mathbf b'\bX'\by+\mathbf b'\bX'\bX\mathbf b$. The two middle terms are $1\times1$ scalars and a scalar equals its transpose, so $S=\by'\by-2\mathbf b'\bX'\by+\mathbf b'\bX'\bX\mathbf b$.
+
+(b) $\partial S/\partial\mathbf b=\mathbf0-2\bX'\by+2\bX'\bX\mathbf b$, using the linear rule and the quadratic rule with the symmetric $\bX'\bX$. Setting it to zero at $\bbh$: $\bX'\bX\bbh=\bX'\by$.
+
+(c) A2 (full column rank) makes $\bX'\bX$ invertible, so $\bbh=(\bX'\bX)^{-1}\bX'\by$.
+
+(d) The Hessian is $2\bX'\bX$. For $\mathbf c\ne\mathbf0$, $\mathbf c'\bX'\bX\mathbf c=(\bX\mathbf c)'(\bX\mathbf c)=\sum_i(\mathbf x_i'\mathbf c)^2>0$ because $\bX\mathbf c\neq\mathbf0$ under A2. Positive definite, so $S$ is strictly convex and $\bbh$ is the unique minimum.
+
+(e) $\bX'\bX\bbh=\bX'\by\iff\bX'(\by-\bX\bbh)=\bX'\beh=\mathbf0$. If column 1 is $\iotav$, the first row reads $\iotav'\beh=\sum_i\hat e_i=0$.
+
+\sol{4 [LF]}
+(a) $\bX'\bX$: $2\times2$; $\bP,\bM$: $3\times3$.
+\[ \bX'\bX=\begin{bmatrix}3&6\\6&14\end{bmatrix}, \quad (\bX'\bX)^{-1}=\frac16\begin{bmatrix}14&-6\\-6&3\end{bmatrix}, \quad \bP=\frac16\begin{bmatrix}5&2&-1\\2&2&2\\-1&2&5\end{bmatrix}. \]
+
+(b) Off-diagonal entries match across the diagonal. $\tr(\bP)=(5+2+5)/6=2=K$.
+
+(c) $\hat\by=(1.5,\ 4,\ 6.5)'$; \ $\beh=(0.5,\ -1,\ 0.5)'$. \ $\hat\by'\beh=0.75-4+3.25=0$; \ $\iotav'\beh=0$.
+
+(d) Let $\mathbf Q=(\bX'\bX)^{-1}$, which is symmetric.
+\[ \bP^2=\bX\mathbf Q\bX'\bX\mathbf Q\bX'=\bX\mathbf Q\bX'=\bP, \qquad \bM^2=\bI-2\bP+\bP^2=\bM, \]\[ \bP\bM=\bP-\bP^2=\mathbf0, \qquad \bM\bX=\bX-\bX\mathbf Q\bX'\bX=\mathbf0. \]
+
+\sol{5 [LF]}
+(a) $\bar X_2=3$, $\bar X_3=5$. Deviations of $X_3$: $-3,-2,0,1,4$ (sum of squares $30$); of $X_2$: $-2,0,-1,2,1$. Cross-product $=6+0+0+2+4=12$. So $\hat\gamma_2=12/30=0.4$, $\hat\gamma_1=3-0.4(5)=1$, and
+\[ \hat v=X_2-1-0.4X_3=(-0.8,\ 0.8,\ -1.0,\ 1.6,\ -0.6). \]
+
+(b) $\bar Y=9$; deviations $-5,-1,-1,2,5$; cross-product with $X_3$ deviations $=15+2+0+2+20=39$. So $\hat\delta_2=1.3$, $\hat\delta_1=9-6.5=2.5$, and
+\[ \hat u=Y-2.5-1.3X_3=(-1.1,\ 1.6,\ -1.0,\ 0.7,\ -0.2). \]
+
+(c) $\sum\hat u_i\hat v_i=0.88+1.28+1.0+1.12+0.12=4.4$; \ $\sum\hat v_i^2=0.64+0.64+1+2.56+0.36=5.2$.
+\[ \hat\beta_2=\frac{4.4}{5.2}=\frac{11}{13}\approx0.846. \]
+No intercept is needed because both residual vectors come from regressions with a constant, so each has mean zero.
+
+(d) Yes, exactly, as FWL guarantees.
+
+(e) $X_2$ and $X_3$ are positively related, and $X_3$ is positively related to $Y$. Alone, the slope on $X_2$ also picks up the part of $X_3$ that moves with $X_2$. FWL strips $X_3$ out of both $Y$ and $X_2$ first, so $0.846$ uses only the variation in $X_2$ that is unrelated to $X_3$.
+
+\sol{6 [LF]}
+(a)
+\[ \bM^0=\frac13\begin{bmatrix}2&-1&-1\\-1&2&-1\\-1&-1&2\end{bmatrix}, \qquad \bM^0\by=(2-4,\ 3-4,\ 7-4)'=(-2,\ -1,\ 3)'. \]
+
+(b) With $\bX_1=\iotav$, $\bM_{X_1}=\bM^0$ demeans: $\tilde{\mathbf x}=\mathbf x-\iotav\xbar$ and $\tilde\by=\by-\iotav\ybar$. FWL gives
+\[ \hat\beta_2=(\tilde{\mathbf x}'\tilde{\mathbf x})^{-1}\tilde{\mathbf x}'\tilde\by=\frac{\sum(x_i-\xbar)(y_i-\ybar)}{\sum(x_i-\xbar)^2}. \]
+
+\sol{7 [LF]}
+(a) $R^2=1-150/500=0.70$. \ $\bar R^2=1-\dfrac{150/26}{500/29}=1-\dfrac{5.769}{17.241}=0.665$.
+
+(b) $R^2=1-148/500=0.704$ (rose). \ $\bar R^2=1-\dfrac{148/25}{17.241}=1-\dfrac{5.92}{17.241}=0.657$ (fell). The drop in RSS was too small to pay for the lost degree of freedom.
+
+(c) The larger model can always reproduce the smaller one by setting the new coefficient to zero. OLS minimizes RSS over a larger set, so RSS cannot rise; TSS is unchanged, so $R^2$ cannot fall.
+
+(d) Cross-sectional data are noisy, so a low $R^2$ is common even when a coefficient is precisely estimated and economically important. $R^2$ measures fit, not the size or significance of an effect.
+
+\end{document}

@@ -1,0 +1,148 @@
+\documentclass[11pt]{article}
+\IfFileExists{preamble.tex}{\input{preamble}}{\input{exam1-study-plan/preamble}}
+\fancyhead[R]{\small\color{slate}Mock Exam}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries\color{navy} Mock Exam 1}\\[6pt]
+{\large ECON-GA 1001: Applied Statistics and Econometrics I}\\[4pt]
+{\color{slate} Take on Mon Oct 19 \quad$\cdot$\quad Time allowed: 2 hours \quad$\cdot$\quad 100 points}
+\end{center}
+
+\begin{planbox}[Instructions]
+\begin{itemize}
+  \item Closed notes. Non-programmable calculator only. Use the course statistical tables (normal and $t$).
+  \item Set a timer for 120 minutes. Suggested pacing: Part A 15 min, Part B 15 min, Part C 85 min, check 5 min.
+  \item Show your work on Part C. A correct number with no supporting work earns limited credit.
+  \item Grade yourself with \texttt{mock\_exam\_solutions.tex} only after the timer ends.
+\end{itemize}
+\end{planbox}
+
+%======================================================
+\section{Part A: Multiple choice (8 questions, 2 points each)}
+\markboth{Part A}{}
+
+\begin{enumerate}[label=\textbf{A\arabic*.},leftmargin=*]
+\item Which is \textbf{not} a requirement for $f(x)$ to be a valid probability density function?
+  \begin{enumerate}[label=(\alph*)]
+  \item $f(x)\ge0$ for all $x$ \quad (b) $\int_{-\infty}^{\infty}f(x)\,dx=1$ \quad (c) $f(x)\le1$ for all $x$ \quad (d) $P(a\le X\le b)=\int_a^bf(x)\,dx$
+  \end{enumerate}
+
+\item If $\Cov(X,Y)=0$, then
+  \begin{enumerate}[label=(\alph*)]
+  \item $X$ and $Y$ are independent \quad (b) $\E[Y\mid X]$ is constant \quad (c) $X$ and $Y$ have no linear association \quad (d) $\Var(X+Y)=\Var(X)\Var(Y)$
+  \end{enumerate}
+
+\item An estimator has $\E[\hat\theta_n]=\theta$ and $\Var(\hat\theta_n)=\sigma^2/4$ for every $n$. It is
+  \begin{enumerate}[label=(\alph*)]
+  \item unbiased and consistent \quad (b) biased and consistent \quad (c) unbiased and not consistent \quad (d) biased and not consistent
+  \end{enumerate}
+
+\item A 95\% confidence interval for $\mu$ is $[4.2,\ 7.8]$. At the 5\% level, a two-sided test of $H_0:\mu=8$
+  \begin{enumerate}[label=(\alph*)]
+  \item rejects \quad (b) fails to reject \quad (c) cannot be decided without $n$ \quad (d) accepts $H_0$
+  \end{enumerate}
+
+\item In OLS with an intercept, which is \textbf{not} guaranteed by the algebra of least squares?
+  \begin{enumerate}[label=(\alph*)]
+  \item $\sum_i\hat e_i=0$ \quad (b) $\bX'\beh=\mathbf0$ \quad (c) $\E[\be\mid\bX]=\mathbf0$ \quad (d) $\bar{\hat y}=\ybar$
+  \end{enumerate}
+
+\item Which model \textbf{cannot} be written as linear in the parameters?
+  \begin{enumerate}[label=(\alph*)]
+  \item $Y=\beta_0+\beta_1\ln X+\varepsilon$ \quad (b) $\ln Y=\beta_0+\beta_1X+\varepsilon$ \quad (c) $Y=\beta_0+e^{\beta_1X}+\varepsilon$ \quad (d) $Y=\beta_0+\beta_1X+\beta_2X^2+\varepsilon$
+  \end{enumerate}
+
+\item Let $\bP=\bX(\bX'\bX)^{-1}\bX'$ and $\bM=\bI-\bP$. Then $\bP\bM\by$ equals
+  \begin{enumerate}[label=(\alph*)]
+  \item $\hat\by$ \quad (b) $\beh$ \quad (c) $\mathbf0$ \quad (d) $\by$
+  \end{enumerate}
+
+\item $Y$ is regressed on $X$ with an intercept. $Y$ is then measured in cents instead of dollars ($Y^*=100Y$). Which statement is true?
+  \begin{enumerate}[label=(\alph*)]
+  \item The slope and $R^2$ both rise by a factor of 100.
+  \item The slope rises by a factor of 100 and $R^2$ is unchanged.
+  \item The slope is unchanged and the residuals rise by a factor of 100.
+  \item Nothing changes.
+  \end{enumerate}
+\end{enumerate}
+
+%======================================================
+\section{Part B: Brief answers (4 questions, 4 points each)}
+\markboth{Part B}{}
+
+Briefly define or describe. Use mathematical expressions where appropriate.
+
+\begin{enumerate}[label=\textbf{B\arabic*.},leftmargin=*]
+\item Estimator versus estimate.
+\item Full column rank of $\bX$, and why OLS needs it.
+\item Homoskedasticity versus heteroskedasticity. Write the conditional variance-covariance matrix of $\be$ in each case (assume no correlation across observations).
+\item The difference between $\E[\be\mid\bX]=\mathbf0$ and $\bX'\beh=\mathbf0$.
+\end{enumerate}
+
+%======================================================
+\section{Part C: Problems (68 points)}
+\markboth{Part C}{}
+
+\subsection{C1. A continuous density (14 points)}
+Let $f(x)=c(2x+1)$ for $0\le x\le2$, and $0$ otherwise.
+\begin{enumerate}[label=(\alph*)]
+\item (3) Find $c$.
+\item (3) Derive the CDF $F(x)$ for all real $x$.
+\item (2) Find $P(X>1)$.
+\item (4) Find $\E[X]$ and $\Var(X)$.
+\item (2) Find the median.
+\end{enumerate}
+
+\subsection{C2. Joint and conditional distributions (14 points)}
+\begin{center}
+\begin{tabular}{c|ccc}
+$X\backslash Y$ & 0 & 1 & 2 \\ \hline
+1 & 0.10 & 0.20 & 0.10 \\
+2 & 0.05 & 0.15 & 0.40
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*)]
+\item (3) Find the marginal distributions of $X$ and $Y$, and $\E[Y]$.
+\item (4) Find $\E[Y\mid X=1]$ and $\E[Y\mid X=2]$, and verify the Law of Iterated Expectations.
+\item (4) Find $\Cov(X,Y)$.
+\item (3) Are $X$ and $Y$ independent? Justify with probabilities.
+\end{enumerate}
+
+\subsection{C3. Inference for a mean (12 points)}
+A random sample of $n=16$ from a normal population has $\Xbar=52.4$ and $s=4.8$.
+\begin{enumerate}[label=(\alph*)]
+\item (4) Test $H_0:\mu=50$ against $H_1:\mu\ne50$ at the 5\% level. State the statistic, its reference distribution, the critical value, and your conclusion in words.
+\item (3) Construct the 95\% confidence interval and relate it to part (a).
+\item (2) Test $H_0:\mu=50$ against $H_1:\mu>50$ at the 5\% level.
+\item (3) Suppose instead the population standard deviation is known to be $\sigma=4.8$. Redo part (a) and explain why the reference distribution changes.
+\end{enumerate}
+
+\subsection{C4. Simple OLS and rescaling (14 points)}
+\begin{center}
+\begin{tabular}{c|ccccc}
+$x_i$ & 1 & 2 & 4 & 5 & 8 \\ \hline
+$y_i$ & 3 & 5 & 6 & 9 & 12
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*)]
+\item (5) Compute $\hat\beta_1$ and $\hat\beta_0$ for $y_i=\beta_0+\beta_1x_i+e_i$.
+\item (3) Compute the residuals and verify that $\sum\hat e_i=0$ and $\sum x_i\hat e_i=0$.
+\item (3) Compute TSS, RSS, and $R^2$.
+\item (3) Let $y^*_i=10y_i$ and $x^*_i=x_i-2$. Give the new slope, intercept, and $R^2$ without re-running the regression. Explain.
+\end{enumerate}
+
+\subsection{C5. Matrix OLS and fit (14 points)}
+Consider $\by=\bX\bb+\be$ with $\bX$ an $n\times K$ matrix whose first column is $\iotav$.
+\begin{enumerate}[label=(\alph*)]
+\item (5) Set up the least squares problem and derive the normal equations. State the assumption needed to solve them, and give $\bbh$.
+\item (3) Show that the normal equations imply $\bX'\beh=\mathbf0$ and that $\sum_i\hat e_i=0$.
+\item (3) Partition $\bX=[\bX_1\ \ \bX_2]$. Describe, in three steps, how the Frisch-Waugh-Lovell theorem recovers $\bbh_2$. Write $\bM_{X_1}$ explicitly.
+\item (3) A regression with $n=40$ and $K=5$ has $R^2=0.60$. Compute $\bar R^2$. Explain why researchers report $\bar R^2$ alongside $R^2$.
+\end{enumerate}
+
+\vfill
+\begin{center}\color{slate}\itshape End of exam. Stop the timer.\end{center}
+
+\end{document}

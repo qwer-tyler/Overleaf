@@ -1,0 +1,81 @@
+% Shared preamble for the Exam 1 study materials
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathpazo}
+\linespread{1.08}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,bm}
+\usepackage{booktabs,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true,linkcolor=navy,urlcolor=navy]{hyperref}
+
+\definecolor{navy}{HTML}{34495E}
+\definecolor{slate}{HTML}{5D6D7E}
+\definecolor{paleblue}{HTML}{EAF0F6}
+\definecolor{palegold}{HTML}{FBF5E6}
+\definecolor{gold}{HTML}{B7950B}
+\definecolor{palegreen}{HTML}{EAF5EE}
+\definecolor{green}{HTML}{1E8449}
+
+\titleformat{\section}{\Large\bfseries\color{navy}}{}{0pt}{}[\vspace{-0.6ex}{\color{navy}\rule{\linewidth}{0.8pt}}]
+\titleformat{\subsection}{\large\bfseries\color{navy}}{}{0pt}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{slate}}{}{0pt}{}
+\setcounter{secnumdepth}{0}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small\color{slate}ECON-GA 1001: Exam 1 Preparation}
+\fancyhead[R]{\small\color{slate}\leftmark}
+\fancyfoot[C]{\small\thepage}
+
+\setlist[enumerate]{itemsep=3pt,topsep=4pt}
+\setlist[itemize]{itemsep=2pt,topsep=3pt}
+
+% Boxes
+\newtcolorbox{keybox}[1][Key results]{enhanced,breakable,colback=paleblue,colframe=navy,
+  fonttitle=\bfseries,title=#1,boxrule=0.6pt,arc=2pt,left=8pt,right=8pt,top=6pt,bottom=6pt}
+\newtcolorbox{planbox}[1][Session plan]{enhanced,breakable,colback=palegold,colframe=gold,
+  fonttitle=\bfseries,title=#1,boxrule=0.6pt,arc=2pt,left=8pt,right=8pt,top=6pt,bottom=6pt}
+\newtcolorbox{solbox}[1][Answer]{enhanced,breakable,colback=palegreen,colframe=green,
+  fonttitle=\bfseries,title=#1,boxrule=0.6pt,arc=2pt,left=8pt,right=8pt,top=6pt,bottom=6pt}
+
+% Problems
+\newcounter{prob}[section]
+\newcommand{\prob}[2]{\par\medskip\refstepcounter{prob}\noindent{\bfseries\color{navy}Problem \theprob\ \ }{\small\color{slate}[#1]}\ \ \textit{#2}\par\smallskip}
+\newcommand{\sol}[1]{\par\medskip\noindent{\bfseries\color{green}Solution #1}\par\smallskip}
+
+% Math shortcuts
+\newcommand{\E}{\mathbb{E}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\SE}{SE}
+\DeclareMathOperator{\SD}{SD}
+\DeclareMathOperator{\MSE}{MSE}
+\DeclareMathOperator{\Bias}{Bias}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\plim}{plim}
+\newcommand{\Col}{\operatorname{Col}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\be}{\bm{\varepsilon}}
+\newcommand{\bb}{\bm{\beta}}
+\newcommand{\bbh}{\hat{\bm{\beta}}}
+\newcommand{\beh}{\hat{\bm{\varepsilon}}}
+\newcommand{\iotav}{\bm{\iota}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bP}{\mathbf{P}}
+\newcommand{\bM}{\mathbf{M}}
+\newcommand{\xbar}{\bar{x}}
+\newcommand{\ybar}{\bar{y}}
+\newcommand{\Xbar}{\bar{X}}
+\newcommand{\convp}{\xrightarrow{\;p\;}}
+\newcommand{\convd}{\xrightarrow{\;d\;}}
+\newcommand{\blank}{\underline{\hspace{3cm}}}

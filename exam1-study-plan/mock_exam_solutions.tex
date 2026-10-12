@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+\IfFileExists{preamble.tex}{\input{preamble}}{\input{exam1-study-plan/preamble}}
+\fancyhead[R]{\small\color{slate}Mock Exam Answer Key}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries\color{navy} Mock Exam 1: Answer Key}\\[6pt]
+{\color{slate} Grade only after the 2-hour timer ends. Add every lost point to your error log.}
+\end{center}
+
+\section{Part A (16 points)}
+\markboth{Part A}{}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}c c p{11cm}@{}}
+\toprule
+\textbf{Q} & \textbf{Ans} & \textbf{Why} \\
+\midrule
+A1 & (c) & Densities can exceed 1 (for example $U[0,\tfrac12]$ has $f=2$). Only area must be 1. \\
+A2 & (c) & Zero covariance rules out only linear association; (a) and (b) need more; (d) should be a sum. \\
+A3 & (c) & Unbiased, but the variance never shrinks, so it does not concentrate around $\theta$. \\
+A4 & (a) & $8$ lies outside the 95\% interval, so the 5\% two-sided test rejects. \\
+A5 & (c) & Exogeneity is a population assumption; the rest follow from the normal equations. \\
+A6 & (c) & $\beta_1$ sits inside $e^{\beta_1X}$ next to an additive $\beta_0$ and $\varepsilon$, so no transform isolates it. \\
+A7 & (c) & $\bP\bM=\bP-\bP^2=\mathbf0$. \\
+A8 & (b) & With $y^*=by$, slope and intercept scale by $b=100$; $R^2$ is unit-free. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Part B (16 points)}
+\markboth{Part B}{}
+
+\textbf{B1.} An \emph{estimator} is a rule, a function of the random sample, such as $\Xbar=\tfrac1n\sum X_i$. It is a random variable with a sampling distribution. An \emph{estimate} is the number it produces in one observed sample, such as $\bar x=165.8$. Bias, variance, and consistency describe estimators, not estimates.
+
+\textbf{B2.} $\bX$ ($n\times K$) has full column rank when its columns are linearly independent, $\rank(\bX)=K$: no column is an exact linear combination of the others. Then $\bX'\bX$ is invertible, so the normal equations have the unique solution $\bbh=(\bX'\bX)^{-1}\bX'\by$. Without it (for example, an intercept plus a dummy for every category), infinitely many $\bbh$ give the same fit.
+
+\textbf{B3.} Homoskedasticity: $\Var(\varepsilon_i\mid\bX)=\sigma^2$ for all $i$, so $\Var(\be\mid\bX)=\sigma^2\bI_n$. Heteroskedasticity: the variance changes with the observation (often with $X$), so
+\[ \Var(\be\mid\bX)=\begin{bmatrix}\sigma_1^2&0&\cdots&0\\0&\sigma_2^2&\cdots&0\\\vdots&&\ddots&\vdots\\0&0&\cdots&\sigma_n^2\end{bmatrix}. \]
+It is a variance problem, not a conditional mean problem.
+
+\textbf{B4.} $\E[\be\mid\bX]=\mathbf0$ (A3, exogeneity) is an assumption about the unobserved population disturbances: the regressors carry no information about their mean. $\bX'\beh=\mathbf0$ is the normal equation: it holds by construction for OLS residuals in every sample, whether or not A3 is true. So residual orthogonality cannot test exogeneity.
+
+\section{Part C (68 points)}
+\markboth{Part C}{}
+
+\subsection{C1 (14 points)}
+(a) $\displaystyle\int_0^2c(2x+1)\,dx=c\big[x^2+x\big]_0^2=6c=1\Rightarrow c=\tfrac16$. \hfill (3)
+
+(b) $F(x)=0$ for $x<0$; \ $F(x)=\dfrac{x^2+x}{6}$ for $0\le x\le2$; \ $F(x)=1$ for $x>2$. \hfill (3)
+
+(c) $P(X>1)=1-F(1)=1-\tfrac26=\tfrac23$. \hfill (2)
+
+(d)
+\[ \E[X]=\frac16\int_0^2(2x^2+x)\,dx=\frac16\Big(\frac{16}{3}+2\Big)=\frac{11}{9}\approx1.222, \]\[ \E[X^2]=\frac16\int_0^2(2x^3+x^2)\,dx=\frac16\Big(8+\frac83\Big)=\frac{16}{9}, \]
+\[ \Var(X)=\frac{16}{9}-\frac{121}{81}=\frac{23}{81}\approx0.284. \tag*{(4)} \]
+
+(e) $\dfrac{m^2+m}{6}=\dfrac12\Rightarrow m^2+m-3=0\Rightarrow m=\dfrac{-1+\sqrt{13}}{2}\approx1.303$ (the root in $[0,2]$). \hfill (2)
+
+\subsection{C2 (14 points)}
+(a) $X$: $P(1)=0.4$, $P(2)=0.6$. \ $Y$: $P(0)=0.15$, $P(1)=0.35$, $P(2)=0.50$. \ $\E[Y]=0.35+1.00=1.35$. \hfill (3)
+
+(b) $Y\mid X=1$: $0.25,\ 0.50,\ 0.25$, so $\E[Y\mid X=1]=0.5+0.5=1.0$. \ $Y\mid X=2$: $\tfrac1{12},\ \tfrac14,\ \tfrac23$, so $\E[Y\mid X=2]=\tfrac14+\tfrac43=\tfrac{19}{12}\approx1.583$.
+\[ \E\big[\E[Y\mid X]\big]=0.4(1.0)+0.6\big(\tfrac{19}{12}\big)=0.40+0.95=1.35=\E[Y]. \tag*{(4)} \]
+
+(c) $\E[X]=1.6$; \ $\E[XY]=1(0.20+0.20)+2(0.15+0.80)=0.4+1.9=2.3$; \ $\Cov(X,Y)=2.3-1.6(1.35)=0.14$. \hfill (4)
+
+(d) No. $P(X=1,Y=0)=0.10$ but $P(X=1)P(Y=0)=0.4\times0.15=0.06$. Also $\E[Y\mid X]$ changes with $X$, and $\Cov\neq0$. \hfill (3)
+
+\subsection{C3 (12 points)}
+(a) $\SE=4.8/\sqrt{16}=1.2$, \ $t=(52.4-50)/1.2=2.00\sim t_{15}$ under $H_0$ (normal population, $\sigma$ unknown). Critical value $t_{0.975,15}=2.131$. Since $|t|=2.00<2.131$, \textbf{fail to reject}: the data do not show at the 5\% level that the mean differs from 50. \hfill (4)
+
+(b) $52.4\pm2.131(1.2)=52.4\pm2.557=[49.84,\ 54.96]$. It contains 50, consistent with failing to reject. \hfill (3)
+
+(c) $t_{0.95,15}=1.753$. Since $2.00>1.753$, \textbf{reject} in favor of $\mu>50$. \hfill (2)
+
+(d) $z=2.00\sim N(0,1)$; critical value $1.96$; \textbf{reject}. With $\sigma$ known there is no extra uncertainty from estimating it, so the standardized mean is exactly standard normal (thinner tails, smaller critical value). \hfill (3)
+
+\subsection{C4 (14 points)}
+(a) $\xbar=4$, $\ybar=7$. Deviations: $x$: $-3,-2,0,1,4$; $y$: $-4,-2,-1,2,5$.
+\[ \sum(x_i-\xbar)(y_i-\ybar)=12+4+0+2+20=38, \quad \sum(x_i-\xbar)^2=30, \]\[ \hat\beta_1=\frac{38}{30}=\frac{19}{15}\approx1.267, \quad \hat\beta_0=7-\frac{19}{15}(4)=\frac{29}{15}\approx1.933. \tag*{(5)} \]
+
+(b) $\hat y\approx3.200,\ 4.467,\ 7.000,\ 8.267,\ 12.067$. Residuals (exact): $-\tfrac{3}{15},\ \tfrac{8}{15},\ -\tfrac{15}{15},\ \tfrac{11}{15},\ -\tfrac{1}{15}$. They sum to $0$, and $\sum x_i\hat e_i=\tfrac{1}{15}(-3+16-60+55-8)=0$. \hfill (3)
+
+(c) $TSS=16+4+1+4+25=50$; \ $RSS=\tfrac{1}{225}(9+64+225+121+1)=\tfrac{420}{225}=\tfrac{28}{15}\approx1.867$; \ $R^2=1-1.867/50\approx0.963$. \hfill (3)
+
+(d) With $y^*=by+d$, $x^*=ax+c$ ($b=10$, $d=0$, $a=1$, $c=-2$): slope $\tfrac{b}{a}\hat\beta_1=\tfrac{190}{15}\approx12.667$; intercept $b\hat\beta_0+d-\tfrac{b}{a}\hat\beta_1c=\tfrac{290}{15}+\tfrac{380}{15}=\tfrac{670}{15}\approx44.667$. Check: $10\hat y=19.33+12.667(x^*+2)$. $R^2$ stays $0.963$, since fitted values and residuals are both scaled by 10. \hfill (3)
+
+\subsection{C5 (14 points)}
+(a) $\min_{\mathbf b}S(\mathbf b)=(\by-\bX\mathbf b)'(\by-\bX\mathbf b)=\by'\by-2\mathbf b'\bX'\by+\mathbf b'\bX'\bX\mathbf b$ (the cross terms are equal scalars). Differentiating,
+\[ \frac{\partial S}{\partial\mathbf b}=-2\bX'\by+2\bX'\bX\mathbf b=\mathbf0\;\Rightarrow\;\bX'\bX\bbh=\bX'\by. \]
+Under A2 ($\rank\bX=K$), $\bX'\bX$ is invertible and $\bbh=(\bX'\bX)^{-1}\bX'\by$. The Hessian $2\bX'\bX$ is positive definite, so it is a minimum. \hfill (5)
+
+(b) Rearranging, $\bX'(\by-\bX\bbh)=\bX'\beh=\mathbf0$. The first column of $\bX$ is $\iotav$, so the first row is $\iotav'\beh=\sum_i\hat e_i=0$. \hfill (3)
+
+(c) $\bM_{X_1}=\bI-\bX_1(\bX_1'\bX_1)^{-1}\bX_1'$. (1) Residualize $\bX_2$: $\tilde\bX_2=\bM_{X_1}\bX_2$. (2) Residualize $\by$: $\tilde\by=\bM_{X_1}\by$. (3) Regress $\tilde\by$ on $\tilde\bX_2$: $\bbh_2=(\tilde\bX_2'\tilde\bX_2)^{-1}\tilde\bX_2'\tilde\by$, identical to the full regression, with identical residuals. This is what ``holding $\bX_1$ constant'' means. \hfill (3)
+
+(d) $\bar R^2=1-\dfrac{n-1}{n-K}(1-R^2)=1-\dfrac{39}{35}(0.40)\approx0.554$. $R^2$ can never fall when regressors are added, even irrelevant ones, so it rewards larger models mechanically. $\bar R^2$ divides RSS and TSS by their degrees of freedom, so it rises only if a regressor lowers RSS enough to justify the lost degree of freedom. \hfill (3)
+
+\vspace{8pt}
+\begin{keybox}[Scoring guide]
+\textbf{85 to 100:} exam ready; spend Tue Oct 20 on your error log only. \quad \textbf{70 to 84:} redo the Day problems for every topic where you lost 3 or more points. \quad \textbf{Below 70:} on Tue Oct 20, redo the long-form problems for your two weakest days under a timer.
+\end{keybox}
+
+\end{document}
