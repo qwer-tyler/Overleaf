@@ -4,16 +4,16 @@
 \begin{document}
 
 \begin{center}
-{\LARGE\bfseries\color{navy} Exam 1: 7-Day Study Plan}\\[6pt]
+{\LARGE\bfseries\color{navy} Exam 1: 6-Session Study Plan}\\[6pt]
 {\large ECON-GA 1001: Applied Statistics and Econometrics I}\\[4pt]
-{\color{slate} Study days: Mon Oct 12 to Sun Oct 18, 2026 \quad$\cdot$\quad Mock exam: Mon Oct 19 \quad$\cdot$\quad Exam: Wed Oct 21, 6:20 to 8:20 pm}
+{\color{slate} Study days: Mon Oct 12 to Sun Oct 18, 2026 (no session Wed Oct 14) \quad$\cdot$\quad Mock exam: Mon Oct 19 \quad$\cdot$\quad Exam: Wed Oct 21, 6:20 to 8:20 pm}
 \end{center}
 
 \vspace{6pt}
 \section{How to use this plan}
 \markboth{How to use this plan}{}
 
-Seven sessions of 3.5 to 4 hours cover all seven themes in the study guide, in the order the lectures build them. The mock exam (2 hours) is separate and is not counted in those hours.
+Six sessions cover all seven themes in the study guide, in the order the lectures build them. Most run 3.5 to 4 hours; Day 3 merges estimators and inference into one longer session (4 to 4.5 hours) with a core set of problems and optional extras. The mock exam (2 hours) is separate and is not counted in those hours.
 
 \begin{center}
 \renewcommand{\arraystretch}{1.25}
@@ -23,11 +23,10 @@ Seven sessions of 3.5 to 4 hours cover all seven themes in the study guide, in t
 \midrule
 1 & Mon Oct 12 & Random variables, distributions, moments & HW1 P1, P2(a,b) \\
 2 & Tue Oct 13 & Joint and conditional distributions, CEF, LIE & HW1 P2(c,d), P3 \\
-3 & Wed Oct 14 & Estimators: bias, variance, MSE, LLN, CLT & HW1 P4, P5 \\
-4 & Thu Oct 15 & Inference and the population regression line & HW1 P7 \\
-5 & Fri Oct 16 & Simple OLS, algebraic properties, rescaling & HW2 P1, P2 \\
-6 & Sat Oct 17 & Matrix algebra, least squares geometry, CLRM & HW2 P3, P4, P6(a to d) \\
-7 & Sun Oct 18 & Matrix OLS, $\bP$ and $\bM$, FWL, $R^2$ & HW2 P5, P6(e) \\
+3 & Thu Oct 15 & Estimators, LLN, CLT, inference, population regression & HW1 P4, P5, P7 \\
+4 & Fri Oct 16 & Simple OLS, algebraic properties, rescaling & HW2 P1, P2 \\
+5 & Sat Oct 17 & Matrix algebra, least squares geometry, CLRM & HW2 P3, P4, P6(a to d) \\
+6 & Sun Oct 18 & Matrix OLS, $\bP$ and $\bM$, FWL, $R^2$ & HW2 P5, P6(e) \\
 \midrule
 Mock & Mon Oct 19 & Timed 2-hour mock exam, then self-grade & \texttt{mock\_exam.tex} \\
 Review & Tue Oct 20 & Light review of your error log only (1 hour max) & \\
@@ -226,30 +225,42 @@ Let $\varepsilon=Y-\E[Y\mid X]$. Prove, step by step, that (i) $\E[\varepsilon\m
 
 %=====================================================================
 \clearpage
-\section{Day 3 (Wed Oct 14): What makes an estimator good}
-\markboth{Day 3: Estimators}{}
+\section{Day 3 (Thu Oct 15): Estimators and inference}
+\markboth{Day 3: Estimators and inference}{}
 
-\begin{planbox}[Session plan: 3.5 hours]
-\textbf{Read:} \emph{Estimation and Inference}, slides 4 to 35.\\
-\textbf{Redo:} HW1 Problem 4 (dice and the CLT), HW1 Problem 5 (comparing two estimators).\\
-\textbf{Goal:} Compute bias, variance, and MSE of an estimator; judge efficiency and consistency; use the CLT to approximate probabilities about $\Xbar$ or a sum.
+\begin{planbox}[Session plan: 4 to 4.5 hours (merged session)]
+\textbf{Read:} \emph{Estimation and Inference}, all slides (4 to 55); \emph{Introduction to Linear Regression}, slides 4 to 20.\\
+\textbf{Redo:} HW1 Problem 4 (dice and the CLT), HW1 Problem 5 (comparing estimators), HW1 Problem 7 (test and CI).\\
+\textbf{Time split:} concept review 75 min, homework redo 45 min, core problems 1 to 8 about 100 min, grading 30 min.\\
+\textbf{Goal:} Judge an estimator by bias, variance, MSE, and consistency; use the CLT; run $z$ and $t$ tests and intervals by hand; derive the population regression line.
 \end{planbox}
 
-\begin{keybox}
+\begin{keybox}[Key results: estimators]
 \begin{itemize}
   \item \textbf{Parameter} $\theta$ (fixed, unknown) $\;\to\;$ \textbf{estimator} $\hat\theta(X_1,\dots,X_n)$ (a random variable) $\;\to\;$ \textbf{estimate} (one realized number).
   \item \textbf{Bias, variance, MSE:}
-  \[ \Bias(\hat\theta)=\E[\hat\theta]-\theta, \qquad \MSE(\hat\theta)=\E\big[(\hat\theta-\theta)^2\big]=\Var(\hat\theta)+\Bias(\hat\theta)^2. \]
-  \item \textbf{Sample mean (i.i.d.):} $\E[\Xbar]=\mu$, \quad $\Var(\Xbar)=\sigma^2/n$, \quad $\SE(\Xbar)=\sigma/\sqrt n$. \quad A sum: $\E[S_n]=n\mu$, $\Var(S_n)=n\sigma^2$.
-  \item \textbf{Sample variance:} $\tfrac1n\sum(X_i-\Xbar)^2$ has mean $\tfrac{n-1}{n}\sigma^2$; dividing by $n-1$ removes the bias.
+  \[ \Bias(\hat\theta)=\E[\hat\theta]-\theta, \qquad \MSE(\hat\theta)=\Var(\hat\theta)+\Bias(\hat\theta)^2. \]
+  \item \textbf{Sample mean (i.i.d.):} $\E[\Xbar]=\mu$, \ $\Var(\Xbar)=\sigma^2/n$, \ $\SE(\Xbar)=\sigma/\sqrt n$. \ A sum: $\E[S_n]=n\mu$, $\Var(S_n)=n\sigma^2$.
   \item \textbf{Efficiency:} among unbiased estimators, prefer the smaller variance.
-  \item \textbf{Consistency:} $\hat\theta_n\convp\theta$, meaning $P(|\hat\theta_n-\theta|>\epsilon)\to0$. Sufficient: $\E[\hat\theta_n]\to\theta$ and $\Var(\hat\theta_n)\to0$.
-  \item \textbf{LLN:} $\Xbar\convp\mu$ (where the estimator goes). \quad \textbf{CLT:} $\dfrac{\sqrt n(\Xbar-\mu)}{\sigma}\convd N(0,1)$, so $\Xbar\approx N(\mu,\sigma^2/n)$ for large $n$, whatever the parent shape.
-  \item Biased can still be consistent ($\tfrac{1}{n+1}\sum X_i$); unbiased can be inconsistent ($X_1$).
+  \item \textbf{Consistency:} $\hat\theta_n\convp\theta$. Sufficient: $\E[\hat\theta_n]\to\theta$ and $\Var(\hat\theta_n)\to0$. Biased can be consistent; unbiased can be inconsistent ($X_1$).
+  \item \textbf{LLN:} $\Xbar\convp\mu$. \quad \textbf{CLT:} $\dfrac{\sqrt n(\Xbar-\mu)}{\sigma}\convd N(0,1)$, so $\Xbar\approx N(\mu,\sigma^2/n)$ for large $n$.
 \end{itemize}
 \end{keybox}
 
-\subsection{Practice problems}
+\begin{keybox}[Key results: inference and the population regression]
+\begin{itemize}
+  \item \textbf{Reference distribution for $\mu$:}
+  \[ \sigma \text{ known: } z=\frac{\Xbar-\mu_0}{\sigma/\sqrt n}\sim N(0,1), \qquad \sigma \text{ unknown (normal pop.): } t=\frac{\Xbar-\mu_0}{s/\sqrt n}\sim t_{n-1}. \]
+  \item \textbf{Two-sided test:} reject when $|t|>t_{1-\alpha/2,\,n-1}$. \quad \textbf{CI:} $\Xbar\pm t_{1-\alpha/2,\,n-1}\,s/\sqrt n$. A 95\% CI excludes $\mu_0$ exactly when the 5\% test rejects.
+  \item \textbf{p-value:} $P(\text{statistic at least as extreme}\mid H_0)$, not $P(H_0\mid\text{data})$. Say ``fail to reject,'' never ``accept.''
+  \item Type I: reject a true $H_0$ (prob.\ $\alpha$). Type II: miss a false $H_0$ (prob.\ $\beta$). Power $=1-\beta$.
+  \item \textbf{Population regression:} $(\beta_0,\beta_1)=\argmin\E[(Y-c-mX)^2]$ gives
+  \[ \beta_1=\frac{\Cov(X,Y)}{\Var(X)}, \qquad \beta_0=\E[Y]-\beta_1\E[X], \qquad \E[u]=0,\ \E[Xu]=0. \]
+  It is the best linear approximation to the CEF; equal to it when the CEF is linear.
+\end{itemize}
+\end{keybox}
+
+\subsection{Core problems (do all)}
 \setcounter{prob}{0}
 
 \prob{MC}{Bias and consistency}
@@ -264,6 +275,15 @@ If the sample size rises from $n=25$ to $n=100$, the standard error of $\Xbar$
   \item falls by a factor of 4 \quad (b) falls by a factor of 2 \quad (c) is unchanged \quad (d) rises by a factor of 2
 \end{enumerate}
 
+\prob{MC}{p-values}
+A two-sided test gives $p=0.03$. Which statement is correct?
+\begin{enumerate}[label=(\alph*)]
+  \item There is a 3\% chance that $H_0$ is true.
+  \item If $H_0$ were true, a statistic at least this extreme would occur about 3\% of the time.
+  \item We accept $H_1$ with 97\% certainty.
+  \item At $\alpha=0.01$ we reject $H_0$.
+\end{enumerate}
+
 \prob{BA}{LLN versus CLT}
 In two or three sentences each: what does the LLN say about $\Xbar$, what does the CLT say, and why must $\Xbar-\mu$ be multiplied by $\sqrt n$ for the CLT?
 
@@ -276,6 +296,37 @@ Let $X_1,\dots,X_n$ be i.i.d. with mean $\mu$ and variance $\sigma^2$, $n\ge 3$.
   \item Which unbiased estimator is more efficient?
   \item Which estimators are consistent? Justify each answer.
 \end{enumerate}
+
+\prob{LF}{CLT approximations (modeled on HW1 P4)}
+\begin{enumerate}[label=(\alph*)]
+  \item A population (not normal) has $\mu=50$, $\sigma=16$. With $n=64$, approximate $P(\Xbar>53)$ and $P(48<\Xbar<52)$.
+  \item Roll 48 fair four-sided dice and let $S$ be the total. Find $\E[S]$, $\Var(S)$, and $\SD(S)$. (One die: mean 2.5, variance 1.25.)
+  \item Approximate $P(S>130)$, showing the standardization step.
+  \item Why does $S$ look bell-shaped even though one die is uniform?
+\end{enumerate}
+
+\prob{LF}{Test and interval (modeled on HW1 P7)}
+A random sample from a normal population: $12,\ 15,\ 11,\ 14,\ 13,\ 16,\ 10,\ 13$.
+\begin{enumerate}[label=(\alph*)]
+  \item Compute $\Xbar$ and $s$.
+  \item Test $H_0:\mu=11.5$ against $H_1:\mu\ne11.5$ at the 5\% level with $\sigma$ unknown.
+  \item Build the 95\% CI and connect it to part (b).
+  \item Test $H_0:\mu=11.5$ against $H_1:\mu>11.5$ at the 5\% level. Why can the answer differ from (b)?
+  \item Now suppose $\sigma=2$ is known. Redo the two-sided test and the 95\% CI. Explain why the conclusion changes even though $s=\sigma$ here.
+\end{enumerate}
+
+\prob{LF}{Deriving the population regression line}
+\begin{enumerate}[label=(\alph*)]
+  \item Write the first-order conditions of $\min_{c,m}\E[(Y-c-mX)^2]$ and show they imply $\E[u]=0$ and $\E[Xu]=0$.
+  \item Solve for $\beta_0$ and $\beta_1$.
+  \item Using the joint table from Day 2 (where $\E[X]=1.2$, $\E[Y]=21.5$, $\Var(X)=0.56$, $\Cov(X,Y)=2.2$), compute $\beta_0,\beta_1$.
+  \item Compare the line at $X=0,1,2$ with the CEF values $17.5,\ 20,\ 25$. Is the CEF linear? What is $\E[u\mid X=0]$?
+\end{enumerate}
+
+\subsection{Optional extras (only if ahead of schedule)}
+
+\prob{BA}{$z$ versus $t$}
+Explain why the $t$ distribution has heavier tails than $N(0,1)$, and when the difference matters.
 
 \prob{LF}{Weighted average of two draws}
 Let $X_1,X_2$ be i.i.d. with mean $\mu$ and variance $\sigma^2$, and $\hat\mu_w=wX_1+(1-w)X_2$.
@@ -300,66 +351,6 @@ $X_i\sim U[0,\theta]$ and the sample is $0.3,\ 0.9,\ 0.5,\ 0.7$.
   \item Using $\MSE(\hat\theta_1)=\dfrac{2\theta^2}{(n+1)(n+2)}$ and $\MSE(\hat\theta_2)=\dfrac{\theta^2}{3n}$, which is better at $n=4$?
 \end{enumerate}
 
-\prob{LF}{CLT approximations (modeled on HW1 P4)}
-\begin{enumerate}[label=(\alph*)]
-  \item A population (not normal) has $\mu=50$, $\sigma=16$. With $n=64$, approximate $P(\Xbar>53)$ and $P(48<\Xbar<52)$.
-  \item Roll 48 fair four-sided dice and let $S$ be the total. Find $\E[S]$, $\Var(S)$, and $\SD(S)$. (One die: mean 2.5, variance 1.25.)
-  \item Approximate $P(S>130)$, showing the standardization step.
-  \item Why does $S$ look bell-shaped even though one die is uniform?
-\end{enumerate}
-
-%=====================================================================
-\clearpage
-\section{Day 4 (Thu Oct 15): Inference and the population regression line}
-\markboth{Day 4: Inference}{}
-
-\begin{planbox}[Session plan: 3.75 hours]
-\textbf{Read:} \emph{Estimation and Inference}, slides 36 to 55; \emph{Introduction to Linear Regression}, slides 4 to 20.\\
-\textbf{Redo:} HW1 Problem 7 (test and CI, $\sigma$ unknown then known).\\
-\textbf{Goal:} Run $z$ and $t$ tests and intervals by hand with the tables; read a p-value correctly; derive the population regression coefficients from minimizing expected squared error.
-\end{planbox}
-
-\begin{keybox}
-\begin{itemize}
-  \item \textbf{Choosing the reference distribution for $\mu$:}
-  \[ \sigma \text{ known: } z=\frac{\Xbar-\mu_0}{\sigma/\sqrt n}\sim N(0,1), \qquad \sigma \text{ unknown (normal pop.): } t=\frac{\Xbar-\mu_0}{s/\sqrt n}\sim t_{n-1}. \]
-  Large $n$ with unknown parent: the $t$ statistic is approximately $N(0,1)$ by the CLT.
-  \item \textbf{Two-sided test at level $\alpha$:} reject $H_0$ when $|t|>t_{1-\alpha/2,\,n-1}$. \quad \textbf{CI:} $\Xbar\pm t_{1-\alpha/2,\,n-1}\,\dfrac{s}{\sqrt n}$.
-  \item A 95\% two-sided CI excludes $\mu_0$ exactly when the 5\% two-sided test rejects.
-  \item \textbf{p-value:} $P(\text{statistic at least as extreme as observed}\mid H_0)$. It is not $P(H_0 \text{ true}\mid\text{data})$.
-  \item Type I: reject a true $H_0$ (probability $\alpha$). Type II: fail to reject a false $H_0$ (probability $\beta$). Power $=1-\beta$.
-  \item We say ``fail to reject,'' never ``accept.''
-  \item \textbf{Population regression:} $(\beta_0,\beta_1)=\argmin_{c,m}\E[(Y-c-mX)^2]$ gives
-  \[ \beta_1=\frac{\Cov(X,Y)}{\Var(X)}=\rho_{XY}\frac{\sigma_Y}{\sigma_X}, \qquad \beta_0=\E[Y]-\beta_1\E[X], \qquad \E[u]=0,\ \E[Xu]=0. \]
-  \item The line is the best linear approximation to the CEF. If the CEF is linear, they coincide and $u=\varepsilon$.
-\end{itemize}
-\end{keybox}
-
-\subsection{Practice problems}
-\setcounter{prob}{0}
-
-\prob{MC}{p-values}
-A two-sided test gives $p=0.03$. Which statement is correct?
-\begin{enumerate}[label=(\alph*)]
-  \item There is a 3\% chance that $H_0$ is true.
-  \item If $H_0$ were true, a statistic at least this extreme would occur about 3\% of the time.
-  \item We accept $H_1$ with 97\% certainty.
-  \item At $\alpha=0.01$ we reject $H_0$.
-\end{enumerate}
-
-\prob{BA}{$z$ versus $t$}
-Explain why the $t$ distribution has heavier tails than $N(0,1)$, and when the difference matters.
-
-\prob{LF}{Test and interval (modeled on HW1 P7)}
-A random sample from a normal population: $12,\ 15,\ 11,\ 14,\ 13,\ 16,\ 10,\ 13$.
-\begin{enumerate}[label=(\alph*)]
-  \item Compute $\Xbar$ and $s$.
-  \item Test $H_0:\mu=11.5$ against $H_1:\mu\ne11.5$ at the 5\% level with $\sigma$ unknown.
-  \item Build the 95\% CI and connect it to part (b).
-  \item Test $H_0:\mu=11.5$ against $H_1:\mu>11.5$ at the 5\% level. Why can the answer differ from (b)?
-  \item Now suppose $\sigma=2$ is known. Redo the two-sided test and the 95\% CI. Explain why the conclusion changes even though $s=\sigma$ here.
-\end{enumerate}
-
 \prob{LF}{Size, power, and the cutoff}
 $X_1,\dots,X_{25}$ i.i.d. $N(\mu,1)$. Test $H_0:\mu=0$ against $H_1:\mu>0$, rejecting when $\Xbar>c$.
 \begin{enumerate}[label=(\alph*)]
@@ -368,18 +359,11 @@ $X_1,\dots,X_{25}$ i.i.d. $N(\mu,1)$. Test $H_0:\mu=0$ against $H_1:\mu>0$, reje
   \item What happens to $\alpha$ and $\beta$ if $c$ is raised? How can both fall at once?
 \end{enumerate}
 
-\prob{LF}{Deriving the population regression line}
-\begin{enumerate}[label=(\alph*)]
-  \item Write the first-order conditions of $\min_{c,m}\E[(Y-c-mX)^2]$ and show they imply $\E[u]=0$ and $\E[Xu]=0$.
-  \item Solve for $\beta_0$ and $\beta_1$.
-  \item Using the joint table from Day 2 (where $\E[X]=1.2$, $\E[Y]=21.5$, $\Var(X)=0.56$, $\Cov(X,Y)=2.2$), compute $\beta_0,\beta_1$.
-  \item Compare the line at $X=0,1,2$ with the CEF values $17.5,\ 20,\ 25$. Is the CEF linear? What is $\E[u\mid X=0]$?
-\end{enumerate}
 
 %=====================================================================
 \clearpage
-\section{Day 5 (Fri Oct 16): Simple OLS}
-\markboth{Day 5: Simple OLS}{}
+\section{Day 4 (Fri Oct 16): Simple OLS}
+\markboth{Day 4: Simple OLS}{}
 
 \begin{planbox}[Session plan: 3.5 hours]
 \textbf{Read:} \emph{Introduction to Linear Regression}, slides 21 to 50.\\
@@ -454,8 +438,8 @@ Same data.
 
 %=====================================================================
 \clearpage
-\section{Day 6 (Sat Oct 17): Matrices, least squares geometry, and the CLRM}
-\markboth{Day 6: Matrices and CLRM}{}
+\section{Day 5 (Sat Oct 17): Matrices, least squares geometry, and the CLRM}
+\markboth{Day 5: Matrices and CLRM}{}
 
 \begin{planbox}[Session plan: 4 hours]
 \textbf{Read:} \emph{Multiple Regression and the CLRM}, all slides (1 to 47).\\
@@ -543,8 +527,8 @@ In $TestScore_i=\beta_0+\beta_1STR_i+\varepsilon_i$, explain in three sentences 
 
 %=====================================================================
 \clearpage
-\section{Day 7 (Sun Oct 18): Matrix OLS, projections, FWL, and fit}
-\markboth{Day 7: Matrix OLS and FWL}{}
+\section{Day 6 (Sun Oct 18): Matrix OLS, projections, FWL, and fit}
+\markboth{Day 6: Matrix OLS and FWL}{}
 
 \begin{planbox}[Session plan: 4 hours]
 \textbf{Read:} \emph{Least Squares Regression: Solving the Multiple-Regression OLS Problem} (all), \emph{Partial Effects and Goodness of Fit} (all).\\
@@ -764,9 +748,11 @@ This is not linear in $x$ (it falls from $\tfrac23$ at $x=0$ to $\tfrac59$ at $x
 
 \sol{2 [MC]} \textbf{(b).} $\SE=\sigma/\sqrt n$, and $\sqrt{100}/\sqrt{25}=2$.
 
-\sol{3 [BA]} The LLN says $\Xbar\convp\mu$: the sampling distribution collapses onto $\mu$. The CLT describes the \emph{shape} of the error around $\mu$: $\sqrt n(\Xbar-\mu)/\sigma\convd N(0,1)$. Since $\Var(\Xbar-\mu)=\sigma^2/n\to0$, multiplying by $\sqrt n$ is the exact rate that keeps the variance at $\sigma^2$, so the distribution neither collapses to a point nor explodes.
+\sol{3 [MC]} \textbf{(b).} (a) confuses $P(\text{data}\mid H_0)$ with $P(H_0\mid\text{data})$. (d) is wrong because $0.03>0.01$.
 
-\sol{4 [LF]}
+\sol{4 [BA]} The LLN says $\Xbar\convp\mu$: the sampling distribution collapses onto $\mu$. The CLT describes the \emph{shape} of the error around $\mu$: $\sqrt n(\Xbar-\mu)/\sigma\convd N(0,1)$. Since $\Var(\Xbar-\mu)=\sigma^2/n\to0$, multiplying by $\sqrt n$ is the exact rate that keeps the variance at $\sigma^2$, so the distribution neither collapses to a point nor explodes.
+
+\sol{5 [LF]}
 (a) $\E[\hat\mu_1]=\mu$ and $\E[\hat\mu_2]=\mu$ (both unbiased). $\E[\hat\mu_3]=\dfrac{n\mu}{n-1}$, bias $\dfrac{\mu}{n-1}$.
 
 (b) $\Var(\hat\mu_1)=\tfrac14(2\sigma^2)=\tfrac{\sigma^2}{2}$; \ $\Var(\hat\mu_2)=\tfrac{\sigma^2}{n}$; \ $\Var(\hat\mu_3)=\dfrac{n\sigma^2}{(n-1)^2}$.
@@ -775,28 +761,7 @@ This is not linear in $x$ (it falls from $\tfrac23$ at $x=0$ to $\tfrac59$ at $x
 
 (d) $\hat\mu_2$: unbiased with variance to zero, consistent. $\hat\mu_3$: bias and variance both go to zero, consistent (biased but consistent). $\hat\mu_1$: variance stays at $\sigma^2/2$, so it never concentrates; not consistent. It ignores all but two observations.
 
-\sol{5 [LF]}
-(a) $\E[\hat\mu_w]=w\mu+(1-w)\mu=\mu$.
-
-(b) $\Var(\hat\mu_w)=\big(w^2+(1-w)^2\big)\sigma^2$. Setting the derivative $2w-2(1-w)=0$ gives $w=\tfrac12$, with variance $\sigma^2/2$. Equal weights win.
-
 \sol{6 [LF]}
-(a) $\E[c\Xbar]=c\mu$, so $\Bias=(c-1)\mu$, and $\Var(c\Xbar)=c^2\sigma^2/n$. Add variance and squared bias.
-
-(b) $\sigma^2/n=4$ and $\mu^2=100$:
-\[ c=1:\ 4.00 \qquad c=0.95:\ 0.9025(4)+0.0025(100)=3.86 \qquad c=0.9:\ 0.81(4)+0.01(100)=4.24. \]
-$c=0.95$ is best here: a little bias buys a larger drop in variance.
-
-(c) The best $c=\mu^2/(\mu^2+\sigma^2/n)$ depends on the unknown $\mu$ and $\sigma^2$, so it cannot be computed in practice.
-
-\sol{7 [LF]}
-(a) $\hat\theta_1=0.9$; \ $\Xbar=2.4/4=0.6$, so $\hat\theta_2=1.2$.
-
-(b) $\dfrac{n+1}{n}\max X_i=\dfrac54(0.9)=1.125$.
-
-(c) $\MSE(\hat\theta_1)=\dfrac{2\theta^2}{5\cdot6}=\dfrac{\theta^2}{15}$ and $\MSE(\hat\theta_2)=\dfrac{\theta^2}{12}$. The biased maximum has lower MSE.
-
-\sol{8 [LF]}
 (a) $\SE(\Xbar)=16/8=2$. $P(\Xbar>53)=1-\Phi(1.5)=0.0668$. $P(48<\Xbar<52)=\Phi(1)-\Phi(-1)=0.6826$.
 
 (b) $\E[S]=48(2.5)=120$, $\Var(S)=48(1.25)=60$ (independence lets variances add), $\SD(S)=\sqrt{60}\approx7.746$.
@@ -805,14 +770,7 @@ $c=0.95$ is best here: a little bias buys a larger drop in variance.
 
 (d) Each extra die convolves the distribution again. Many middle totals can be reached by many combinations, while extreme totals have few, so mass piles up in the center. The CLT makes this precise.
 
-%---------------------------------------------------------------- Day 4
-\subsection{Day 4 solutions}
-
-\sol{1 [MC]} \textbf{(b).} (a) confuses $P(\text{data}\mid H_0)$ with $P(H_0\mid\text{data})$. (d) is wrong because $0.03>0.01$.
-
-\sol{2 [BA]} Replacing $\sigma$ with the estimate $s$ adds a second source of randomness, so extreme ratios are more likely: heavier tails and larger critical values. With few degrees of freedom the gap is large ($t_{0.975,7}=2.365$ versus $1.96$); as $n$ grows, $t_{n-1}\to N(0,1)$ and the gap vanishes (small for $n>30$).
-
-\sol{3 [LF]}
+\sol{7 [LF]}
 (a) $\Xbar=104/8=13$. Deviations $-1,2,-2,1,0,3,-3,0$, squares sum to $28$. $s^2=28/7=4$, $s=2$.
 
 (b) $\SE=2/\sqrt8=0.7071$, \ $t=(13-11.5)/0.7071=2.121$. With $t_{0.975,7}=2.365$: $|t|<2.365$, \textbf{fail to reject}. (Two-sided $p\approx0.072$.)
@@ -823,14 +781,7 @@ $c=0.95$ is best here: a little bias buys a larger drop in variance.
 
 (e) $z=2.121>1.96$: \textbf{reject} (two-sided $p\approx0.034$). CI: $13\pm1.96(0.7071)=[11.61,\ 14.39]$, which excludes $11.5$. Knowing $\sigma$ removes the extra uncertainty from estimating it, so the reference distribution is $N(0,1)$ with the smaller critical value $1.96$.
 
-\sol{4 [LF]}
-(a) Under $H_0$, $\Xbar\sim N(0,1/25)$, $\SE=0.2$. $c=1.645(0.2)=0.329$.
-
-(b) Power $=P(\Xbar>0.329\mid\mu=0.5)=P\big(Z>(0.329-0.5)/0.2\big)=P(Z>-0.855)\approx\Phi(0.86)=0.805$. So $\beta\approx0.195$.
-
-(c) Raising $c$ lowers $\alpha$ but raises $\beta$. Both fall only with more information: a larger $n$ (smaller SE) separates the null and alternative distributions.
-
-\sol{5 [LF]}
+\sol{8 [LF]}
 (a) FOCs:
 \[ \frac{\partial}{\partial c}:\ \E[-2(Y-\beta_0-\beta_1X)]=0, \qquad \frac{\partial}{\partial m}:\ \E[-2X(Y-\beta_0-\beta_1X)]=0, \]
 which are $\E[u]=0$ and $\E[Xu]=0$ with $u=Y-\beta_0-\beta_1X$.
@@ -841,8 +792,40 @@ which are $\E[u]=0$ and $\E[Xu]=0$ with $u=Y-\beta_0-\beta_1X$.
 
 (d) Line: $16.79,\ 20.71,\ 24.64$ at $X=0,1,2$, versus CEF $17.5,\ 20,\ 25$. The CEF is not linear (it rises by 2.5 then by 5). $\E[u\mid X=0]=17.5-16.79=0.71\ne0$: the population regression error has mean zero and is uncorrelated with $X$, but its conditional mean is not zero when the CEF is nonlinear.
 
-%---------------------------------------------------------------- Day 5
-\subsection{Day 5 solutions}
+\noindent{\color{slate}\itshape Optional extras:}
+
+\sol{9 [BA]} Replacing $\sigma$ with the estimate $s$ adds a second source of randomness, so extreme ratios are more likely: heavier tails and larger critical values. With few degrees of freedom the gap is large ($t_{0.975,7}=2.365$ versus $1.96$); as $n$ grows, $t_{n-1}\to N(0,1)$ and the gap vanishes (small for $n>30$).
+
+\sol{10 [LF]}
+(a) $\E[\hat\mu_w]=w\mu+(1-w)\mu=\mu$.
+
+(b) $\Var(\hat\mu_w)=\big(w^2+(1-w)^2\big)\sigma^2$. Setting the derivative $2w-2(1-w)=0$ gives $w=\tfrac12$, with variance $\sigma^2/2$. Equal weights win.
+
+\sol{11 [LF]}
+(a) $\E[c\Xbar]=c\mu$, so $\Bias=(c-1)\mu$, and $\Var(c\Xbar)=c^2\sigma^2/n$. Add variance and squared bias.
+
+(b) $\sigma^2/n=4$ and $\mu^2=100$:
+\[ c=1:\ 4.00 \qquad c=0.95:\ 0.9025(4)+0.0025(100)=3.86 \qquad c=0.9:\ 0.81(4)+0.01(100)=4.24. \]
+$c=0.95$ is best here: a little bias buys a larger drop in variance.
+
+(c) The best $c=\mu^2/(\mu^2+\sigma^2/n)$ depends on the unknown $\mu$ and $\sigma^2$, so it cannot be computed in practice.
+
+\sol{12 [LF]}
+(a) $\hat\theta_1=0.9$; \ $\Xbar=2.4/4=0.6$, so $\hat\theta_2=1.2$.
+
+(b) $\dfrac{n+1}{n}\max X_i=\dfrac54(0.9)=1.125$.
+
+(c) $\MSE(\hat\theta_1)=\dfrac{2\theta^2}{5\cdot6}=\dfrac{\theta^2}{15}$ and $\MSE(\hat\theta_2)=\dfrac{\theta^2}{12}$. The biased maximum has lower MSE.
+
+\sol{13 [LF]}
+(a) Under $H_0$, $\Xbar\sim N(0,1/25)$, $\SE=0.2$. $c=1.645(0.2)=0.329$.
+
+(b) Power $=P(\Xbar>0.329\mid\mu=0.5)=P\big(Z>(0.329-0.5)/0.2\big)=P(Z>-0.855)\approx\Phi(0.86)=0.805$. So $\beta\approx0.195$.
+
+(c) Raising $c$ lowers $\alpha$ but raises $\beta$. Both fall only with more information: a larger $n$ (smaller SE) separates the null and alternative distributions.
+
+%---------------------------------------------------------------- Day 4
+\subsection{Day 4 solutions}
 
 \sol{1 [MC]} \textbf{(c).} That is a population assumption; (a), (b), (d) follow from the normal equations.
 
@@ -883,8 +866,8 @@ Since OLS on the transformed data reproduces this (same minimization in new unit
 
 (b) $\sum x_iy_i=386$, $\sum x_i^2=220$, $\tilde\beta=1.7545$. $\sum\tilde e_i=\sum y_i-\tilde\beta\sum x_i=55-52.64=2.36\neq0$. Without $\iotav$ in $\bX$, there is no normal equation forcing the residuals to sum to zero; only $\sum x_i\tilde e_i=0$ holds.
 
-%---------------------------------------------------------------- Day 6
-\subsection{Day 6 solutions}
+%---------------------------------------------------------------- Day 5
+\subsection{Day 5 solutions}
 
 \sol{1 [MC]} \textbf{(b).} $D_{\text{male}}+D_{\text{female}}=\iotav$, an exact linear dependence (dummy variable trap).
 
@@ -945,8 +928,8 @@ using $\iotav'\iotav=n$.
 
 \sol{9 [BA]} Districts with more English learners score lower and also tend to have larger classes. If $PctEL$ is left out, it moves into $\varepsilon$, and since $STR$ is correlated with it, knowing $STR$ shifts the expected disturbance. Both conditions are needed: the omitted variable affects $Y$, and it is related to an included regressor.
 
-%---------------------------------------------------------------- Day 7
-\subsection{Day 7 solutions}
+%---------------------------------------------------------------- Day 6
+\subsection{Day 6 solutions}
 
 \sol{1 [MC]} \textbf{(b).} $\bM\bX=\bX-\bX(\bX'\bX)^{-1}\bX'\bX=\bX-\bX=\mathbf0$.
 
